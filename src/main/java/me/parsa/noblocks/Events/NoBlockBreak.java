@@ -28,7 +28,7 @@ public class NoBlockBreak implements Listener {
     public void onBreakBlock(BlockBreakEvent e) {
         Player p = e.getPlayer();
 
-        p.sendMessage(someValue);
+        p.sendMessage("§cYou can't break blocks Sorry");
 
         e.setCancelled(true);
 

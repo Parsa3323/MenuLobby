@@ -24,7 +24,7 @@ public final class Noblocks extends JavaPlugin {
         FileConfiguration config = getConfig();
 
         // Example usage: Get a value from the config
-        String someValue = config.getString("test");  // Replace with your actual config key
+        String someValue = config.getString("Prefixes.prefix");  // Replace with your actual config key
         System.out.println(someValue);
 
         System.out.println(Color.GREEN + "Plugin Enabled Succsesfully");
