@@ -42,20 +42,33 @@ public class NoBlockBreak implements Listener {
     @EventHandler
     public void onBreakBlock(BlockBreakEvent e) {
         if (isNotBreakable) {
-            Player p = e.getPlayer();
+            if (e.getPlayer().hasPermission("noblocks.admin")) {
+                e.setCancelled(false);
+            } else if (e.getPlayer().hasPermission("noblocks.break")) {
+                e.setCancelled(false);
+            } else {
+                Player p = e.getPlayer();
 
-            p.sendMessage(break_error);
+                p.sendMessage(break_error);
 
-            e.setCancelled(true);
+                e.setCancelled(true);
+            }
+
         }
     }
     @EventHandler
     public void onEnderOpen(InventoryOpenEvent e) {
         if (e.getInventory().getType() == InventoryType.ENDER_CHEST) {
             if (is_not_open) {
-                e.getPlayer().sendMessage(open_error_ender);
+                if (e.getPlayer().hasPermission("noblocks.admin")) {
+                    e.setCancelled(false);
+                } else {
 
-                e.setCancelled(true);
+                    e.getPlayer().sendMessage(open_error_ender);
+
+                    e.setCancelled(true);
+                }
+
             }
         }
     }
@@ -64,9 +77,14 @@ public class NoBlockBreak implements Listener {
     public void onAnvilOpen(InventoryOpenEvent e){
         if (e.getInventory().getType() == InventoryType.ANVIL) {
             if (anvil_bol){
-                e.getPlayer().sendMessage(someValue);
+                if (e.getPlayer().hasPermission("noblocks.admin")) {
+                    e.setCancelled(false);
+                } else {
+                    e.getPlayer().sendMessage(someValue);
 
-                e.setCancelled(true);
+                    e.setCancelled(true);
+                }
+
             }
         }
 

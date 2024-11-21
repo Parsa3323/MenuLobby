@@ -1,3 +1,10 @@
 name: NoBlocks
 version: '${project.version}'
 main: me.parsa.noblocks.Noblocks
+permissions:
+  noblocks.break:
+    description: Allows breaking blocks.
+    default: false
+  noblocks.admin:
+    description: Gives admin-level permissions for the plugin.
+    default: op
