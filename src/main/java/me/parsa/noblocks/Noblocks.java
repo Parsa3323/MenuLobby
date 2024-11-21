@@ -24,13 +24,22 @@ public final class Noblocks extends JavaPlugin {
         FileConfiguration config = getConfig();
 
         // Example usage: Get a value from the config
-        String someValue = config.getString("Prefixes.prefix");  // Replace with your actual config key
+        boolean Anvil_bol = config.getBoolean("anvils.enabled");
+        String someValue = config.getString("anvils.No-Anvil");  // Replace with your actual config key
         System.out.println(someValue);
+
+        // Variables for BlockBreak
+        boolean is_not_breakable = config.getBoolean("blocks.enabled");
+        String break_error = config.getString("blocks.No-Permission");
+
+        //Vars for enderchests
+        boolean is_not_open = config.getBoolean("enderchests.enabled");
+        String open_error_ender = config.getString("enderchests.no-e-chest");
 
         System.out.println(Color.GREEN + "Plugin Enabled Succsesfully");
         //trh
 
-        getServer().getPluginManager().registerEvents(new NoBlockBreak(this, someValue), this);
+        getServer().getPluginManager().registerEvents(new NoBlockBreak(this, someValue, Anvil_bol, is_not_breakable, break_error, is_not_open, open_error_ender), this);
 
     }
 
