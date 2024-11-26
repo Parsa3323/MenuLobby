@@ -1,10 +1,9 @@
-name: NoBlocks
+name: MenuLobby
 version: '${project.version}'
-main: me.parsa.noblocks.Noblocks
-permissions:
-  noblocks.break:
-    description: Allows breaking blocks.
-    default: false
-  noblocks.admin:
-    description: Gives admin-level permissions for the plugin.
-    default: op
+main: me.parsa.menulobby.MenuLobby
+depend:
+  - NoBlocks
+commands:
+  testkill:
+    description: "testcmd"
+    usage: /<command>

@@ -1,13 +1,1 @@
-Prefixes:
-  enabled: false
-  prefix: "SERVER"
-blocks:
-  enabled: true
-  No-Permission: "§cYou can't break blocks Sorry"
-anvils:
-  enabled: true
-  No-Anvil: "§cSorry anvils are disabled on this server"
-enderchests:
-  enabled: true
-  no-e-chest: "§cSorry Ender Chests are disabled in this server"
-
+Welcome-Messages: true

@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.parsa</groupId>
-    <artifactId>NoBlocks</artifactId>
-    <version>1.2</version>
+    <artifactId>MenuLobby</artifactId>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>noblocks</name>
+    <name>MenuLobby</name>
 
     <properties>
         <java.version>1.8</java.version>
@@ -61,6 +61,10 @@
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
+        <repository>
+            <id>inventive-repo</id>
+            <url>https://repo.inventivetalent.org/content/groups/public/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -70,6 +74,22 @@
             <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>net.kyori</groupId>
+            <artifactId>adventure-platform-bukkit</artifactId>
+            <version>4.3.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.inventivetalent</groupId>
+            <artifactId>bossbarapi</artifactId>
+            <version>2.4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.33</version>
+        </dependency>
+
         <!--Bukkit API-->
 <!--        <dependency>-->
 <!--            <groupId>org.bukkit</groupId>-->
