@@ -19,10 +19,8 @@ public class NoHit implements Listener {
     public void onDamage(EntityDamageEvent e) {
         Entity entity = e.getEntity();
 
-        if (entity.getWorld().equals(targetWorld)) {
-            if (entity instanceof org.bukkit.entity.Player) {
+        if (entity instanceof org.bukkit.entity.Player) {
                 e.setCancelled(true);
-            }
         }
 
     }

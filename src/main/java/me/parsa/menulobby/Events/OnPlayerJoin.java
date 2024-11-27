@@ -1,5 +1,6 @@
 package me.parsa.menulobby.Events;
 
+import me.parsa.menulobby.MenuLobby;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
@@ -17,13 +18,17 @@ public class OnPlayerJoin implements Listener {
 
     boolean msgE;
 
-    public OnPlayerJoin(Plugin pl, boolean msgE) {
+    private final MenuLobby pl;
+
+    public OnPlayerJoin(MenuLobby pl, boolean msgE) {
         this.msgE = msgE;
+        this.pl = pl;
     }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
+        pl.createScoreboard(p);
 
         p.sendMessage("Welcome");
         if (msgE) {

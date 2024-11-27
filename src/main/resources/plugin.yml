@@ -7,3 +7,19 @@ commands:
   testkill:
     description: "testcmd"
     usage: /<command>
+  mfly:
+    description: "Just Turn On fly"
+    usage: /<command>
+  mmembers:
+    description: Open a gui
+    usage: /<command>
+permissions:
+  menulobby.fly:
+    description: Allows Flying.
+    default: op
+  menulobby.flyothers:
+    description: Add fly for people
+    default: op
+  menulobby.ban:
+    description: Ban
+    default: op
