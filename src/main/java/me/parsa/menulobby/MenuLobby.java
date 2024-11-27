@@ -2,10 +2,7 @@ package me.parsa.menulobby;
 
 
 import me.parsa.menulobby.Commands.test;
-import me.parsa.menulobby.Events.BossBar;
-import me.parsa.menulobby.Events.NoHunger;
-import me.parsa.menulobby.Events.NoRain;
-import me.parsa.menulobby.Events.OnPlayerJoin;
+import me.parsa.menulobby.Events.*;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
@@ -36,6 +33,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
 
         boolean IDK =  config.getBoolean("Welcome-Messages");
 
+        getServer().getPluginManager().registerEvents(new NoMob(this), this);
         getServer().getPluginManager().registerEvents(new NoRain(), this);
         getCommand("testkill").setExecutor(new test());
         getServer().getPluginManager().registerEvents(new OnPlayerJoin(this, IDK), this);

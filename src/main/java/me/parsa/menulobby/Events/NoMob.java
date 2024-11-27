@@ -6,13 +6,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.plugin.Plugin;
 
 public class NoMob implements Listener {
 
     private final World targetWorld;
 
-    public NoMob(World targetWorld) {
-        this.targetWorld = targetWorld;
+    public NoMob(Plugin pl) {
+        this.targetWorld = pl.getServer().getWorld("0");
     }
 
     @EventHandler
@@ -23,7 +24,7 @@ public class NoMob implements Listener {
             // Cancel the spawn if the entity is not a player or NPC
             if (!(entity instanceof Player) && !isNPC(entity)) {
                 event.setCancelled(true);
-//                System.out.println("Non-NPC mob spawn cancelled in world: " + targetWorld.getName());
+                System.out.println("Non-NPC mob spawn cancelled in world: " + targetWorld.getName());
             }
         }
     }
