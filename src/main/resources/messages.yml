@@ -1,3 +1,6 @@
 messages:
   welcome: "Welcome, ${player}! Enjoy your time on the server."
-  goodbye: "Goodbye, ${player}. See you soon!"
+  hits:
+    #Enable if you don't want Players to hit each other
+    enabled: true
+    no-perm: "Sorry You Can't do that"
