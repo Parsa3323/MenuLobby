@@ -1,6 +1,7 @@
 package me.parsa.menulobby;
 
 
+import me.parsa.menulobby.Commands.m;
 import me.parsa.menulobby.Commands.mFly;
 import me.parsa.menulobby.Commands.mMembers;
 import me.parsa.menulobby.Commands.test;
@@ -67,6 +68,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
 
         getServer().getPluginManager().registerEvents(new NoMob(this), this);
         getServer().getPluginManager().registerEvents(new NoRain(), this);
+        getCommand("m").setExecutor(new m());
         getCommand("testkill").setExecutor(new test());
         getCommand("mfly").setExecutor(new mFly());
         getCommand("mmembers").setExecutor(new mMembers());
