@@ -41,6 +41,10 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
 
         System.out.println("Succses");
 
+        // Configs for ScoreBoard
+        boolean isE = config.getBoolean("ScoreBoard.enabled");
+        String server_ip = config.getString("ScoreBoard.server-ip");
+
         boolean IDK =  config.getBoolean("Welcome-Messages");
 
         File file2 = new File(getDataFolder(), "messages.yml");
@@ -67,7 +71,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getCommand("mfly").setExecutor(new mFly());
         getCommand("mmembers").setExecutor(new mMembers());
         getServer().getPluginManager().registerEvents(new BanInventoryListener(), this);
-        getServer().getPluginManager().registerEvents(new OnPlayerJoin(this, IDK), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerJoin(this, IDK, server_ip), this);
         getServer().getPluginManager().registerEvents(new NoHunger(), this);
         getServer().getPluginManager().registerEvents(new NoHit(this), this);
         getServer().getPluginManager().registerEvents(new NoDamage(this, noDperm,isBoss), this);
@@ -81,7 +85,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         // Plugin shutdown logic
         System.out.println("MenuLobby Disabled");
     }
-    public void createScoreboard(Player player) {
+    public void createScoreboard(Player player, String server_ip) {
         // Get the Scoreboard Manager
         ScoreboardManager manager = Bukkit.getScoreboardManager();
         Scoreboard scoreboard = manager.getNewScoreboard();
@@ -91,9 +95,10 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         objective.setDisplaySlot(DisplaySlot.SIDEBAR); // Display on the side
 
         // Add scores (lines)
-        objective.getScore(ChatColor.GREEN + "Line 1").setScore(3); // Higher score is displayed on top
-        objective.getScore(ChatColor.AQUA + "Line 2").setScore(2);
-        objective.getScore(ChatColor.RED + "Line 3").setScore(1);
+        objective.getScore(ChatColor.GREEN + "Line 1").setScore(4); // Higher score is displayed on top
+        objective.getScore(ChatColor.AQUA + "Line 2").setScore(3);
+        objective.getScore(ChatColor.RED + "Line 3").setScore(2);
+        objective.getScore(ChatColor.GOLD + server_ip).setScore(1);
 
         // Assign the scoreboard to the player
         player.setScoreboard(scoreboard);

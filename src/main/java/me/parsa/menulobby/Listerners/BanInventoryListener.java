@@ -20,15 +20,12 @@ public class BanInventoryListener implements Listener {
 
                 Player whoToBan = p.getServer().getPlayerExact(ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName()));
 
-                if (whoToBan == null) {
-                    p.sendMessage("P is not online");
-
-                }
                 BanMenuUtils.openConfigrmBanMenu(p, whoToBan);
 
             }
 
-        } else if (e.getView().getTitle().equalsIgnoreCase("You Want To ban?")) {
+        } else if (e.getView().getTitle().equalsIgnoreCase("Ban Con")) {
+            System.out.println("opened You Want to ban? ------------------------");
 
             if (e.getCurrentItem().getType() == Material.BARRIER) {
                 BanMenuUtils.openBanMenu(p);
@@ -42,6 +39,7 @@ public class BanInventoryListener implements Listener {
             }
 
         }
+        e.setCancelled(true);
 
     }
 

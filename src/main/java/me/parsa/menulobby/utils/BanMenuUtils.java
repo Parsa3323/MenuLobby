@@ -36,7 +36,7 @@ public class BanMenuUtils {
     }
 
     public static void openConfigrmBanMenu(Player p, Player whoToBan) {
-        Inventory confirmMenu = Bukkit.createInventory(p, 9,  "You Want To ban?");
+        Inventory confirmMenu = Bukkit.createInventory(p, 9,  "Ban Con");
 
         ItemStack ban = new ItemStack(Material.REDSTONE, 1);
         ItemMeta ban_meta = ban.getItemMeta();

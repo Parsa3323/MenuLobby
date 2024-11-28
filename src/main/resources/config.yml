@@ -1,2 +1,7 @@
 Welcome-Messages: true
-ScoreBoard: true
+
+
+ScoreBoard:
+  enabled: true
+  server-ip: "yourserver.com"
+  showplayers: false # This part is still in alpha and enabling is not recommended

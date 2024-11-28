@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.Plugin;
 import org.inventivetalent.bossbar.BossBarAPI;
 
+import java.io.Console;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,15 +21,20 @@ public class OnPlayerJoin implements Listener {
 
     private final MenuLobby pl;
 
-    public OnPlayerJoin(MenuLobby pl, boolean msgE) {
+    private String server_ip;
+
+    public OnPlayerJoin(MenuLobby pl, boolean msgE, String server_ip) {
         this.msgE = msgE;
         this.pl = pl;
+        this.server_ip = server_ip;
     }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
+
+
         Player p = e.getPlayer();
-        pl.createScoreboard(p);
+        pl.createScoreboard(p, server_ip);
 
         p.sendMessage("Welcome");
         if (msgE) {
@@ -37,8 +43,9 @@ public class OnPlayerJoin implements Listener {
             e.setJoinMessage(null);
         }
 
-        p.sendTitle("Welcome"+ p.getName(), "tewt2");
+        p.sendTitle(ChatColor.GREEN + "Welcome"+ p.getName(), ChatColor.AQUA + "Enjoy Your Time");
         p.playSound(p.getLocation(), Sound.NOTE_PLING, 1 , 1);
-        System.out.printf("Yoooooooooooo");
+        pl.getServer().getConsoleSender().sendMessage(ChatColor.AQUA + p.getName() + "Joined The server say hi");
+        //System.out.printf(p.getName() + "Joined The server");
     }
 }
