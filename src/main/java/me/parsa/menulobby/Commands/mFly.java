@@ -43,13 +43,13 @@ public class mFly implements CommandExecutor {
                         if (list_of_players.contains(target)) {
                             list_of_players.remove(target);
                             target.setAllowFlight(false);
-                            player.sendMessage(ChatColor.AQUA + "Disabled Fly for" + target.getName());
-                            target.sendMessage(player.getName() + ChatColor.GREEN + "Disabled your fly u can't fly now");
+                            player.sendMessage(ChatColor.AQUA + "Disabled Fly for" + " " + target.getName());
+                            target.sendMessage(player.getName() + ChatColor.GREEN + " " + "Disabled your fly u can't fly now");
                         } else if (!list_of_players.contains(target)) {
                             list_of_players.add(target);
                             target.setAllowFlight(true);
-                            player.sendMessage(ChatColor.GREEN + "Enabled fly for" + target.getName());
-                            target.sendMessage(player.getName() + ChatColor.GREEN + "Enabled your fly u can fly now");
+                            player.sendMessage(ChatColor.GREEN + "Enabled fly for" + " " + target.getName());
+                            target.sendMessage(player.getName() + " " + ChatColor.GREEN + "Enabled your fly u can fly now");
 
                         }
 

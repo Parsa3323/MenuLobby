@@ -43,9 +43,9 @@ public class OnPlayerJoin implements Listener {
             e.setJoinMessage(null);
         }
         
-        p.sendTitle(ChatColor.GREEN + "Welcome"+ p.getName(), ChatColor.AQUA + "Enjoy Your Time");
+        p.sendTitle(ChatColor.GREEN + "Welcome" + " " + p.getName(), ChatColor.AQUA + "Enjoy Your Time");
         p.playSound(p.getLocation(), Sound.NOTE_PLING, 1 , 1);
-        pl.getServer().getConsoleSender().sendMessage(ChatColor.AQUA + p.getName() + "Joined The server say hi");
+        pl.getServer().getConsoleSender().sendMessage(ChatColor.AQUA + p.getName() + " Joined The server say hi");
         //System.out.printf(p.getName() + "Joined The server");
     }
 }
