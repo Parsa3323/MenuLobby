@@ -4,6 +4,8 @@ main: me.parsa.menulobby.MenuLobby
 depend:
   - NoBlocks
 commands:
+  munban:
+    description: TEST
   m:
     description: /<command>
     aliases:
@@ -22,6 +24,8 @@ commands:
     description: Open a gui
     usage: /<command>
 permissions:
+  menulobby.unban:
+    description: Alows to unban users
   menulobby.admin:
     description: The admin remember this doesn't add all perms that fly and... have
     default: op

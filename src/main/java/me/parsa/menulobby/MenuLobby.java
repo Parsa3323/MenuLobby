@@ -9,6 +9,7 @@ import me.clip.placeholderapi.expansion.manager.LocalExpansionManager;
 import me.parsa.menulobby.Commands.*;
 import me.parsa.menulobby.Events.*;
 import me.parsa.menulobby.Listerners.BanInventoryListener;
+import me.parsa.menulobby.Listerners.UnbanInventoryListener;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -83,9 +84,11 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
 
         getServer().getPluginManager().registerEvents(new NoMob(this), this);
         getServer().getPluginManager().registerEvents(new NoRain(), this);
+        getServer().getPluginManager().registerEvents(new UnbanInventoryListener(), this);
         getCommand("m").setExecutor(new m());
         getCommand("testkill").setExecutor(new test());
         getCommand("mfly").setExecutor(new mFly());
+        getCommand("munban").setExecutor(new munban());
         getCommand("mtest").setExecutor(new mtest());
         getCommand("mmembers").setExecutor(new mMembers());
         getServer().getPluginManager().registerEvents(new BanInventoryListener(), this);
