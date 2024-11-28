@@ -6,7 +6,7 @@
 
     <groupId>me.parsa</groupId>
     <artifactId>MenuLobby</artifactId>
-    <version>3.2</version>
+    <version>3.3</version>
     <packaging>jar</packaging>
 
     <name>MenuLobby</name>
@@ -65,9 +65,19 @@
             <id>inventive-repo</id>
             <url>https://repo.inventivetalent.org/content/groups/public/</url>
         </repository>
+        <repository>
+            <id>placeholderapi</id>
+            <url>https://repo.extendedclip.com/releases/</url>
+        </repository>
     </repositories>
 
     <dependencies>
+        <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>2.11.6</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>

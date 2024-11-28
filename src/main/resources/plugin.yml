@@ -9,6 +9,9 @@ commands:
     aliases:
       - ml
       - menulobby
+  mtest:
+    description: TEST
+    usage: /<command>
   testkill:
     description: "testcmd"
     usage: /<command>

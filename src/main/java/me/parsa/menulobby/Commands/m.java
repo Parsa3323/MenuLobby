@@ -11,12 +11,12 @@ public class m implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("m")) {
             if (sender.hasPermission("menulobby.admin")) {
-                sender.sendMessage("Commands: ");
+                sender.sendMessage( ChatColor.GOLD + "Commands: ");
                 sender.sendMessage(ChatColor.GREEN + "Prefix: M");
                 sender.sendMessage(ChatColor.AQUA + "mfly : enable or disable fly mode");
                 sender.sendMessage(ChatColor.AQUA + "mmembers: Opens a gui menu for banning or managing memebrs");
             } else {
-                sender.sendMessage(ChatColor.AQUA + "MenuLobby Running ${project.version}");
+                sender.sendMessage(ChatColor.AQUA + "MenuLobby Running");
             }
             return true;
         }

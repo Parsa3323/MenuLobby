@@ -1,15 +1,19 @@
 package me.parsa.menulobby;
 
 
-import me.parsa.menulobby.Commands.m;
-import me.parsa.menulobby.Commands.mFly;
-import me.parsa.menulobby.Commands.mMembers;
-import me.parsa.menulobby.Commands.test;
+import me.clip.placeholderapi.PlaceholderAPI;
+import me.clip.placeholderapi.PlaceholderAPIPlugin;
+import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
+import me.clip.placeholderapi.expansion.manager.CloudExpansionManager;
+import me.clip.placeholderapi.expansion.manager.LocalExpansionManager;
+import me.parsa.menulobby.Commands.*;
 import me.parsa.menulobby.Events.*;
 import me.parsa.menulobby.Listerners.BanInventoryListener;
+import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -26,6 +30,8 @@ import java.io.File;
 public final class MenuLobby extends JavaPlugin implements Listener, CommandExecutor {
 
     private BossBar bossBar;
+
+
 
     @Override
     public void onEnable() {
@@ -64,13 +70,23 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         boolean isBoss = messages.getBoolean("messages.hits.enabled");
         String noDperm = messages.getString("messages.hits.no-perm");
 
+        ConsoleCommandSender consoleCommandSender = Bukkit.getConsoleSender();
 
+//        String command2 = "papi ecloud download Vault";
+//
+//        Bukkit.dispatchCommand(consoleCommandSender, command2);
+        //----------------------------------------------------------
+
+
+
+        //--------------------------------------------------------
 
         getServer().getPluginManager().registerEvents(new NoMob(this), this);
         getServer().getPluginManager().registerEvents(new NoRain(), this);
         getCommand("m").setExecutor(new m());
         getCommand("testkill").setExecutor(new test());
         getCommand("mfly").setExecutor(new mFly());
+        getCommand("mtest").setExecutor(new mtest());
         getCommand("mmembers").setExecutor(new mMembers());
         getServer().getPluginManager().registerEvents(new BanInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new OnPlayerJoin(this, IDK, server_ip), this);
