@@ -43,7 +43,6 @@ public class OnPlayerJoin implements Listener {
         Player p = e.getPlayer();
         pl.createScoreboard(p, server_ip, score_title);
 
-        p.sendMessage("Welcome");
         if (msgE) {
             e.setJoinMessage(ChatColor.GREEN + "Welcome " + p.getName());
         } else {

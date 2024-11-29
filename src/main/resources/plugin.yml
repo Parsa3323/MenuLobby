@@ -18,6 +18,9 @@ commands:
     aliases:
       - ml
       - menulobby
+  mreload:
+    description: Reloads the plugin
+    usage: /mreload
   mtest:
     description: TEST
     usage: /<command>
