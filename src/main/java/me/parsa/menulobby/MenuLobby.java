@@ -51,6 +51,17 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
 
         System.out.println("Succses");
 
+        getServer().getConsoleSender().sendMessage(ChatColor.AQUA + "        .__   ");
+        getServer().getConsoleSender().sendMessage(ChatColor.AQUA + "  _____ |  |   ");
+        getServer().getConsoleSender().sendMessage(ChatColor.AQUA + " /     \\|  |   ");
+        getServer().getConsoleSender().sendMessage(ChatColor.AQUA + "|  Y Y  \\  |__ ");
+        getServer().getConsoleSender().sendMessage(ChatColor.AQUA + "|__|_|  /____/ ");
+        getServer().getConsoleSender().sendMessage(ChatColor.AQUA + "      \\/       ");
+        getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "MenuLobby v" + getDescription().getVersion());
+        getServer().getConsoleSender().sendMessage(ChatColor.GRAY + "Running on Bukkit - CraftBukkit");
+        getServer().getConsoleSender().sendMessage(""); // Blank line for spacing
+
+
         // Configs for ScoreBoard
         boolean isE = config.getBoolean("ScoreBoard.enabled");
         String server_ip = config.getString("ScoreBoard.server-ip");
