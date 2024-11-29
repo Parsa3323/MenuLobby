@@ -8,10 +8,7 @@ import me.clip.placeholderapi.expansion.manager.CloudExpansionManager;
 import me.clip.placeholderapi.expansion.manager.LocalExpansionManager;
 import me.parsa.menulobby.Commands.*;
 import me.parsa.menulobby.Events.*;
-import me.parsa.menulobby.Listerners.BanInventoryListener;
-import me.parsa.menulobby.Listerners.KickInventoryListener;
-import me.parsa.menulobby.Listerners.SettingsInventoryListener;
-import me.parsa.menulobby.Listerners.UnbanInventoryListener;
+import me.parsa.menulobby.Listerners.*;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -75,6 +72,11 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         //------
         boolean is_achievements = config.getBoolean("achievements");
 
+        //-----
+        String discord = config.getString("support.discord");
+        String website = config.getString("support.website");
+        String store = config.getString("support.store");
+
         File file2 = new File(getDataFolder(), "messages.yml");
 
         // Check if the config file exists, if not, copy the default one from resources
@@ -116,6 +118,8 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getCommand("mgmc").setExecutor(new mgmc());
         getCommand("mmembers").setExecutor(new mMembers());
         getCommand("mgms").setExecutor(new mgms());
+        getCommand("msupport").setExecutor(new msupport());
+        getServer().getPluginManager().registerEvents(new SupportInventoryListener(discord,website,store), this);
         getServer().getPluginManager().registerEvents(new SettingsInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new KickInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new BanInventoryListener(), this);

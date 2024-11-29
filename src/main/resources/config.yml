@@ -1,9 +1,29 @@
+"""
+  .__   
+  _____ |  |  
+ /     \|  |      MenuLobby - By Parsa
+|  Y Y  \  |__    
+|__|_|  /____/    Thanks for downloading
+      \/      
+"""
+
+#  Welcome message that is welcome %playername%
 Welcome-Messages: false
 
-
+# ScoreBoard
 ScoreBoard:
+  # You can disable it because many plugins need the scoreboard & the score board is beta
   enabled: true
+  # Server ip your server ip for scoreboard
   server-ip: "yourserver.com"
+  # The menu title, its the title for score board
   menu-title: "Lobby"
+  # i'am no sure this will work
   showplayers: false # This part is still in alpha and enabling is not recommended
+# Achivments like when a player join the server for first time
 achievements: true
+#----------
+support:
+  discord: "https://example.com/discord"
+  website: "https://example.com"
+  store: "https://store.example.com"

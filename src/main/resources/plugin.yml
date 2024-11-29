@@ -4,6 +4,16 @@ main: me.parsa.menulobby.MenuLobby
 depend:
   - NoBlocks
 commands:
+  msupport:
+    description: Opens a gui for support menu
+    usage: /msupport
+    aliases:
+      - discord
+      - site
+      - website
+      - store
+      - ranks
+      - support
   mgms:
     description: Changes your gamemode to survival
     usage: /mgms <user(optional)>
