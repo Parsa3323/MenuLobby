@@ -59,6 +59,9 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         //-----
         String score_title = config.getString("ScoreBoard.menu-title");
 
+        //------
+        boolean is_achievements = config.getBoolean("achievements");
+
         File file2 = new File(getDataFolder(), "messages.yml");
 
         // Check if the config file exists, if not, copy the default one from resources
@@ -100,7 +103,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getServer().getPluginManager().registerEvents(new SettingsInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new KickInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new BanInventoryListener(), this);
-        getServer().getPluginManager().registerEvents(new OnPlayerJoin(this, IDK, server_ip, score_title), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerJoin(this, IDK, server_ip, score_title, is_achievements), this);
         getServer().getPluginManager().registerEvents(new NoHunger(), this);
         getServer().getPluginManager().registerEvents(new NoHit(this), this);
         getServer().getPluginManager().registerEvents(new NoDamage(this, noDperm,isBoss), this);

@@ -6,3 +6,4 @@ ScoreBoard:
   server-ip: "yourserver.com"
   menu-title: "Lobby"
   showplayers: false # This part is still in alpha and enabling is not recommended
+achievements: true

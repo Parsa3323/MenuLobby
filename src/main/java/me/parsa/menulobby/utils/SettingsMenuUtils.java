@@ -26,7 +26,7 @@ public class SettingsMenuUtils {
         ItemMeta kick_meta = kick.getItemMeta();
         kick_meta.setDisplayName(ChatColor.GOLD + "Kick Players");
         kick.setItemMeta(kick_meta);
-        settings.setItem(27, kick);
+        settings.setItem(24, kick);
 
         ItemStack unban = new ItemStack(Material.BARRIER, 1);
         ItemMeta unban_meta = unban.getItemMeta();
