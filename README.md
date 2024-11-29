@@ -4,7 +4,7 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/Parsa3323/MenuLobby?label=Contributors&logo=GitHub)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Parsa3323/MenuLobby?label=Last%20Commit&logo=GitHub)
 ![GitHub issues](https://img.shields.io/github/issues/Parsa3323/MenuLobby?label=Open%20Issues&logo=GitHub)
-[![Static Badge](https://img.shields.io/badge/Links-Spigot-blue)](https://example.com)
+[![Static Badge](https://img.shields.io/badge/Links-Spigot-blue)](https://www.spigotmc.org/resources/menulobby.121022/)
 
 
 
