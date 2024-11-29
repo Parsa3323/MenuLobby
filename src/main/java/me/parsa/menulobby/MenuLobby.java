@@ -16,6 +16,7 @@ import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -27,6 +28,7 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
 import java.io.File;
+import java.util.Map;
 //ds
 
 
@@ -104,7 +106,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getServer().getPluginManager().registerEvents(new NoRain(), this);
         getServer().getPluginManager().registerEvents(new UnbanInventoryListener(), this);
         getCommand("mkick").setExecutor(new mkick());
-        getCommand("m").setExecutor(new m());
+        getCommand("m").setExecutor(new m(this));
         getCommand("testkill").setExecutor(new test());
         getCommand("mfly").setExecutor(new mFly());
         getCommand("msettings").setExecutor(new msettings());
@@ -127,6 +129,30 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
     public void onDisable() {
         // Plugin shutdown logic
         System.out.println("MenuLobby Disabled");
+    }
+    public void showHelp(CommandSender sender) {
+        sender.sendMessage(ChatColor.GOLD + "===== " + ChatColor.AQUA + "MenuLobby Commands" + ChatColor.GOLD + " =====");
+
+        // Get commands from plugin.yml
+        Map<String, Map<String, Object>> commands = this.getDescription().getCommands();
+
+        // Iterate over each command and display its description and usage
+        for (Map.Entry<String, Map<String, Object>> entry : commands.entrySet()) {
+            String commandName = entry.getKey();
+            String description = (String) entry.getValue().get("description");  // Cast to String
+            String usage = (String) entry.getValue().get("usage");  // Cast to String
+
+            // Show the command with description and usage
+            showCommand(sender, commandName, description, usage);
+        }
+
+        sender.sendMessage(ChatColor.GOLD + "============================");
+    }
+
+    public void showCommand(CommandSender sender, String command, String description, String usage) {
+        sender.sendMessage(ChatColor.YELLOW + "/" + command + ChatColor.GRAY + " - " + description);
+        sender.sendMessage(ChatColor.GRAY + "Usage: " + ChatColor.WHITE + usage);
+        sender.sendMessage(""); // Adding space between commands for readability
     }
     public void createScoreboard(Player player, String server_ip, String score_title) {
         // Get the Scoreboard Manager
