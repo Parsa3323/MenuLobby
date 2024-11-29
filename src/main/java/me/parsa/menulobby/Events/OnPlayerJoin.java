@@ -45,7 +45,7 @@ public class OnPlayerJoin implements Listener {
 
         p.sendMessage("Welcome");
         if (msgE) {
-            e.setJoinMessage(ChatColor.GREEN + "Welcome" + p.getName());
+            e.setJoinMessage(ChatColor.GREEN + "Welcome " + p.getName());
         } else {
             e.setJoinMessage(null);
         }
