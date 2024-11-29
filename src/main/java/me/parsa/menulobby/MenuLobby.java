@@ -118,6 +118,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getServer().getPluginManager().registerEvents(new BanInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new OnPlayerJoin(this, IDK, server_ip, score_title, is_achievements), this);
         getServer().getPluginManager().registerEvents(new NoHunger(), this);
+        getServer().getPluginManager().registerEvents(new NoBlockDrop(), this);
         getServer().getPluginManager().registerEvents(new NoHit(this), this);
         getServer().getPluginManager().registerEvents(new NoDamage(this, noDperm,isBoss), this);
 //        getServer().getPluginManager().registerEvents(new OnPlayerJoin(), this);
