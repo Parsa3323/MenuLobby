@@ -4,6 +4,8 @@ main: me.parsa.menulobby.MenuLobby
 depend:
   - NoBlocks
 commands:
+  mkick:
+    description: test2
   munban:
     description: TEST
   m:

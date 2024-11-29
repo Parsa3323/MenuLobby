@@ -19,13 +19,16 @@ public class OnPlayerJoin implements Listener {
 
     boolean msgE;
 
+    private String score_title;
+
     private final MenuLobby pl;
 
     private String server_ip;
 
-    public OnPlayerJoin(MenuLobby pl, boolean msgE, String server_ip) {
+    public OnPlayerJoin(MenuLobby pl, boolean msgE, String server_ip, String score_title) {
         this.msgE = msgE;
         this.pl = pl;
+        this.score_title = score_title;
         this.server_ip = server_ip;
     }
 
@@ -34,7 +37,7 @@ public class OnPlayerJoin implements Listener {
 
 
         Player p = e.getPlayer();
-        pl.createScoreboard(p, server_ip);
+        pl.createScoreboard(p, server_ip, score_title);
 
         p.sendMessage("Welcome");
         if (msgE) {

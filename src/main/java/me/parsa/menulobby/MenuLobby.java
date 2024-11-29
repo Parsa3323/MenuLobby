@@ -9,6 +9,7 @@ import me.clip.placeholderapi.expansion.manager.LocalExpansionManager;
 import me.parsa.menulobby.Commands.*;
 import me.parsa.menulobby.Events.*;
 import me.parsa.menulobby.Listerners.BanInventoryListener;
+import me.parsa.menulobby.Listerners.KickInventoryListener;
 import me.parsa.menulobby.Listerners.UnbanInventoryListener;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.Bukkit;
@@ -54,6 +55,8 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         String server_ip = config.getString("ScoreBoard.server-ip");
 
         boolean IDK =  config.getBoolean("Welcome-Messages");
+        //-----
+        String score_title = config.getString("ScoreBoard.menu-title");
 
         File file2 = new File(getDataFolder(), "messages.yml");
 
@@ -85,14 +88,16 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getServer().getPluginManager().registerEvents(new NoMob(this), this);
         getServer().getPluginManager().registerEvents(new NoRain(), this);
         getServer().getPluginManager().registerEvents(new UnbanInventoryListener(), this);
+        getCommand("mkick").setExecutor(new mkick());
         getCommand("m").setExecutor(new m());
         getCommand("testkill").setExecutor(new test());
         getCommand("mfly").setExecutor(new mFly());
         getCommand("munban").setExecutor(new munban());
         getCommand("mtest").setExecutor(new mtest());
         getCommand("mmembers").setExecutor(new mMembers());
+        getServer().getPluginManager().registerEvents(new KickInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new BanInventoryListener(), this);
-        getServer().getPluginManager().registerEvents(new OnPlayerJoin(this, IDK, server_ip), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerJoin(this, IDK, server_ip, score_title), this);
         getServer().getPluginManager().registerEvents(new NoHunger(), this);
         getServer().getPluginManager().registerEvents(new NoHit(this), this);
         getServer().getPluginManager().registerEvents(new NoDamage(this, noDperm,isBoss), this);
@@ -106,13 +111,13 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         // Plugin shutdown logic
         System.out.println("MenuLobby Disabled");
     }
-    public void createScoreboard(Player player, String server_ip) {
+    public void createScoreboard(Player player, String server_ip, String score_title) {
         // Get the Scoreboard Manager
         ScoreboardManager manager = Bukkit.getScoreboardManager();
         Scoreboard scoreboard = manager.getNewScoreboard();
 
         // Create the Objective
-        Objective objective = scoreboard.registerNewObjective("test", "dummy");
+        Objective objective = scoreboard.registerNewObjective(score_title, "dummy");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR); // Display on the side
 
         // Add scores (lines)
