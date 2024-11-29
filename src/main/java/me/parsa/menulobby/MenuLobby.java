@@ -115,6 +115,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getCommand("mreload").setExecutor(new mReload());
         getCommand("mgmc").setExecutor(new mgmc());
         getCommand("mmembers").setExecutor(new mMembers());
+        getCommand("mgms").setExecutor(new mgms());
         getServer().getPluginManager().registerEvents(new SettingsInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new KickInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new BanInventoryListener(), this);

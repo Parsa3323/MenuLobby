@@ -27,7 +27,7 @@ public class mgmc implements CommandExecutor {
                     if (player.hasPermission("menulobby.gm")) {
                         Player target = Bukkit.getPlayer(args[0]);
                         target.sendMessage(player.getName() + ChatColor.GREEN +  " has changed your gamemode to creative" );
-                        player.sendMessage(ChatColor.GREEN + "Successfully changed" + target.getName() + "'s gamemode to creative");
+                        player.sendMessage(ChatColor.GREEN + "Successfully changed " + target.getName() + "'s gamemode to creative");
                         target.setGameMode(gameMode);
                     } else {
                         player.sendMessage(ChatColor.RED + "You Don't Have Permission");

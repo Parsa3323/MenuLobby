@@ -4,6 +4,11 @@ main: me.parsa.menulobby.MenuLobby
 depend:
   - NoBlocks
 commands:
+  mgms:
+    description: Changes your gamemode to survival
+    usage: /mgms <user(optional)>
+    aliases:
+      - gms
   mgmc:
     description: Changes your gamemode to creative
     usage: /mgmc <user(optional)>
@@ -39,6 +44,8 @@ commands:
     description: Open a gui
     usage: /<command>
 permissions:
+  menulobby.gms:
+    description: Allows to change game-modes to survival
   menulobby.unban:
     description: Alows to unban users
   menulobby.admin:
