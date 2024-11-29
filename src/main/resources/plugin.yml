@@ -6,6 +6,9 @@ depend:
 commands:
   msettings:
     description: Test4
+    aliases:
+      - admin
+      - settings
   mkick:
     description: test2
   munban:

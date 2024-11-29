@@ -3,6 +3,7 @@ package me.parsa.menulobby.utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -31,6 +32,7 @@ public class KickMenuUtils {
             kickgui.addItem(playerHead);
         }
         if (player.hasPermission("menulobby.ban")) {
+            player.playSound(player.getLocation(), Sound.NOTE_PLING, 1 , 1);
             player.openInventory(kickgui);
         }
     }

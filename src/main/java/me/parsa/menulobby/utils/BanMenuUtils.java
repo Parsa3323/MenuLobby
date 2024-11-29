@@ -3,6 +3,7 @@ package me.parsa.menulobby.utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -56,6 +57,7 @@ public class BanMenuUtils {
         nope.setItemMeta(nope_meta);
         confirmMenu.setItem(8, nope);
 
+        p.playSound(p.getLocation(), Sound.NOTE_PLING, 1 , 1);
         p.openInventory(confirmMenu);
 
     }

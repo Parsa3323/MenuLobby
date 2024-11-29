@@ -127,9 +127,11 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         objective.setDisplaySlot(DisplaySlot.SIDEBAR); // Display on the side
 
         // Add scores (lines)
-        objective.getScore(ChatColor.GREEN + "Line 1").setScore(4); // Higher score is displayed on top
-        objective.getScore(ChatColor.AQUA + "Line 2").setScore(3);
-        objective.getScore(ChatColor.RED + "Line 3").setScore(2);
+        objective.getScore(ChatColor.YELLOW + "Welcome to the Lobby!").setScore(6);// Higher score is displayed on top
+        objective.getScore(ChatColor.AQUA + "Online Players: " + Bukkit.getOnlinePlayers().size()).setScore(5);
+        objective.getScore(ChatColor.GREEN + "Available Games:").setScore(4);
+        objective.getScore(ChatColor.GRAY + " - SkyWars").setScore(3);
+        objective.getScore(ChatColor.GRAY + " - BedWars").setScore(2);
         objective.getScore(ChatColor.GOLD + server_ip).setScore(1);
 
         // Assign the scoreboard to the player
