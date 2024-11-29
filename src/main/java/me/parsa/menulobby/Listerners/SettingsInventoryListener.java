@@ -17,7 +17,7 @@ public class SettingsInventoryListener implements Listener {
         Player p = (Player) e.getWhoClicked();
 
         if (e.getView().getTitle().equalsIgnoreCase("Settings")) {
-
+//sd
             if (e.getCurrentItem().getType() == Material.REDSTONE) {
 
                 Player whoToBan = p.getServer().getPlayerExact(ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName()));
