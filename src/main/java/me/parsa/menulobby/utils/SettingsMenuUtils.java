@@ -1,5 +1,6 @@
 package me.parsa.menulobby.utils;
 
+import me.parsa.menulobby.MenuLobby;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 
 public class SettingsMenuUtils {
 
-    public static void openSettings(Player player) {
+    public static void openSettings(Player player, MenuLobby ml) {
 
         Inventory settings = Bukkit.createInventory(player, 45, "Settings");
 
@@ -43,6 +44,32 @@ public class SettingsMenuUtils {
         unban_meta.setLore(lore);
         unban.setItemMeta(unban_meta);
         settings.setItem(20, unban);
+
+        ItemStack tp = new ItemStack(Material.ENDER_PEARL, 1);
+        ItemMeta tp_meta = tp.getItemMeta();
+        tp_meta.setLore(lore);
+        tp_meta.setDisplayName(ChatColor.AQUA + "Teleport");
+        tp.setItemMeta(tp_meta);
+        settings.setItem(40, tp);
+
+        if (ml.getServer().getPluginManager().getPlugin("Parties") != null) {
+            ItemStack part = new ItemStack(Material.ENDER_STONE, 1);
+            ItemMeta part_meta = part.getItemMeta();
+            part_meta.setLore(lore);
+            part_meta.setDisplayName(ChatColor.BLUE + "Parties");
+            part.setItemMeta(part_meta);
+            settings.setItem(43, part);
+        } else {
+            ItemStack part = new ItemStack(Material.STAINED_GLASS_PANE, 1);
+            ItemMeta part_meta = part.getItemMeta();
+            part_meta.setDisplayName(ChatColor.GRAY + "Download parties plugin to use");
+            part.setItemMeta(part_meta);
+            settings.setItem(43, part);
+        }
+
+
+
+
 
         player.playSound(player.getLocation(), Sound.NOTE_PLING, 1 , 1);
         player.openInventory(settings);

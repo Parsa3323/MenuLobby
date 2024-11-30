@@ -71,6 +71,12 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getServer().getConsoleSender().sendMessage(ChatColor.GRAY + "Running on Bukkit - CraftBukkit");
         getServer().getConsoleSender().sendMessage(""); // Blank line for spacing
 
+        if (getServer().getPluginManager().getPlugin("Parties") != null) {
+            getServer().getConsoleSender().sendMessage(ChatColor.GOLD + "Menu Lobby ->" + ChatColor.AQUA + " found parties plugin initializing");
+        } else if (getServer().getPluginManager().getPlugin("Pdarties") == null) {
+            getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "Menu Lobby ->" + ChatColor.AQUA + " we recommend downloading parties plugin for better menulobby work");
+
+        }
 
         // Configs for ScoreBoard
         boolean isE = config.getBoolean("ScoreBoard.enabled");
@@ -133,7 +139,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getCommand("m").setExecutor(new m(this));
         getCommand("testkill").setExecutor(new test());
         getCommand("mfly").setExecutor(new mFly());
-        getCommand("msettings").setExecutor(new msettings());
+        getCommand("msettings").setExecutor(new msettings(this));
         getCommand("munban").setExecutor(new munban());
         getCommand("mtest").setExecutor(new mtest());
         getCommand("mreload").setExecutor(new mReload());
@@ -142,9 +148,11 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getCommand("mgms").setExecutor(new mgms());
         getCommand("msupport").setExecutor(new msupport());
         getCommand("mtp").setExecutor(new mtp());
+        getCommand("mparties").setExecutor(new mparties(this));
+        getServer().getPluginManager().registerEvents(new PartyInventoryListener(this), this);
         getServer().getPluginManager().registerEvents(new TpInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new SupportInventoryListener(discord,website,store), this);
-        getServer().getPluginManager().registerEvents(new SettingsInventoryListener(), this);
+        getServer().getPluginManager().registerEvents(new SettingsInventoryListener(this), this);
         getServer().getPluginManager().registerEvents(new KickInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new BanInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new OnPlayerJoin(this, IDK, server_ip, score_title, is_achievements, is_score, is_title), this);

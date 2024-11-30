@@ -1,8 +1,7 @@
 package me.parsa.menulobby.Listerners;
 
-import me.parsa.menulobby.utils.BanMenuUtils;
-import me.parsa.menulobby.utils.KickMenuUtils;
-import me.parsa.menulobby.utils.UnbanMenuUtils;
+import me.parsa.menulobby.MenuLobby;
+import me.parsa.menulobby.utils.*;
 import org.bukkit.BanList;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -12,6 +11,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 public class SettingsInventoryListener implements Listener {
+
+    private MenuLobby ml;
+
+    public SettingsInventoryListener(MenuLobby ml) {
+        this.ml = ml;
+    }
+
     @EventHandler
     public void onMenuClick(InventoryClickEvent e) {
         Player p = (Player) e.getWhoClicked();
@@ -30,6 +36,10 @@ public class SettingsInventoryListener implements Listener {
             } else if (e.getCurrentItem().getType() == Material.BARRIER) {
                 UnbanMenuUtils.openBanMenu(p);
 
+            } else if (e.getCurrentItem().getType() == Material.ENDER_PEARL) {
+                TpMenuUtils.openTpMenu(p);
+            } else if (e.getCurrentItem().getType() == Material.ENDER_STONE) {
+                PartyMenuUtils.openPartyMenu(ml, p);
             }
 
         }

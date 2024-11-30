@@ -3,6 +3,8 @@ version: '${project.version}'
 main: me.parsa.menulobby.MenuLobby
 softdepend: [NoBlocks]
 commands:
+  mparties:
+    description: TEST
   mtp:
     description: Teleport
     usage: /mtp
