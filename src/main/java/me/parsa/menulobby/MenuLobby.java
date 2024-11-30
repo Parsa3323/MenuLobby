@@ -19,6 +19,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
@@ -33,10 +34,14 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
 
     private BossBar bossBar;
 
-
 //sd
     @Override
     public void onEnable() {
+        if (Bukkit.getPluginManager().getPlugin("MenuLobby") == null) {
+            getLogger().severe("MenuLobby was not found. Disabling...");
+            Bukkit.getPluginManager().disablePlugin(this);
+            return;
+        }
 
         File configFile = new File(getDataFolder(), "config.yml");
 
@@ -68,6 +73,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         boolean IDK =  config.getBoolean("Welcome-Messages");
         //-----
         String score_title = config.getString("ScoreBoard.menu-title");
+        boolean is_score = config.getBoolean("ScoreBoard.enabled");
 
         //------
         boolean is_achievements = config.getBoolean("achievements");
@@ -76,6 +82,9 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         String discord = config.getString("support.discord");
         String website = config.getString("support.website");
         String store = config.getString("support.store");
+
+        //----
+        boolean is_title = config.getBoolean("Welcome-Titles");
 
         File file2 = new File(getDataFolder(), "messages.yml");
 
@@ -95,12 +104,19 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
 
         ConsoleCommandSender consoleCommandSender = Bukkit.getConsoleSender();
 
-//        String command2 = "papi ecloud download Vault";
+ //       String command2 = "papi ecloud download Vault";
 //
 //        Bukkit.dispatchCommand(consoleCommandSender, command2);
         //----------------------------------------------------------
+        // Papi Download for now idk a way to download expansion by papi i have to download with player cmds
 
+//        boolean success = PlaceholderAPIPlugin.getInstance()
+//                .getCloudExpansionManager()
+//                .downloadExpansion("Vault");
 
+//        Bukkit.getScheduler().runTaskLater(this, () -> {
+//            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "papi ecloud download Vault");
+//        }, 80L); // Delay by 20 ticks (1 second)
 
         //--------------------------------------------------------
 
@@ -123,7 +139,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getServer().getPluginManager().registerEvents(new SettingsInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new KickInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new BanInventoryListener(), this);
-        getServer().getPluginManager().registerEvents(new OnPlayerJoin(this, IDK, server_ip, score_title, is_achievements), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerJoin(this, IDK, server_ip, score_title, is_achievements, is_score, is_title), this);
         getServer().getPluginManager().registerEvents(new NoHunger(), this);
         getServer().getPluginManager().registerEvents(new NoBlockDrop(), this);
         getServer().getPluginManager().registerEvents(new NoHit(this), this);
@@ -168,15 +184,20 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         Scoreboard scoreboard = manager.getNewScoreboard();
 
         // Create the Objective
-        Objective objective = scoreboard.registerNewObjective(score_title, "dummy");
+        Objective objective = scoreboard.registerNewObjective( ChatColor.YELLOW + score_title, "dummy");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR); // Display on the side
 
         // Add scores (lines)
-        objective.getScore(ChatColor.YELLOW + "Welcome to the Lobby!").setScore(6);// Higher score is displayed on top
-        objective.getScore(ChatColor.AQUA + "Online Players: " + Bukkit.getOnlinePlayers().size()).setScore(5);
-        objective.getScore(ChatColor.GREEN + "Available Games:").setScore(4);
-        objective.getScore(ChatColor.GRAY + " - SkyWars").setScore(3);
-        objective.getScore(ChatColor.GRAY + " - BedWars").setScore(2);
+        objective.getScore(ChatColor.YELLOW + "  Welcome to the Lobby! ").setScore(10);// Higher score is displayed on top
+        objective.getScore(" ").setScore(6);
+        objective.getScore(ChatColor.AQUA + "  Online Players:  " + Bukkit.getOnlinePlayers().size()).setScore(9);
+        objective.getScore(" ").setScore(8);
+        objective.getScore(ChatColor.GREEN + "  Available Games:  ").setScore(7);
+        objective.getScore(" ").setScore(6);
+        objective.getScore(ChatColor.GRAY + " - SkyWars ").setScore(5);
+        objective.getScore(" ").setScore(4);
+        objective.getScore(ChatColor.GRAY + " - BedWars ").setScore(3);
+        objective.getScore(" ").setScore(2);
         objective.getScore(ChatColor.GOLD + server_ip).setScore(1);
 
         // Assign the scoreboard to the player

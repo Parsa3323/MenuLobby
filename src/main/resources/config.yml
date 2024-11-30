@@ -1,14 +1,15 @@
-"""
-  .__   
-  _____ |  |  
- /     \|  |      MenuLobby - By Parsa
-|  Y Y  \  |__    
-|__|_|  /____/    Thanks for downloading
-      \/      
-"""
+#
+#  .__
+#  _____ |  |
+# /     \|  |      MenuLobby - By Parsa
+#|  Y Y  \  |__
+#|__|_|  /____/    Thanks for downloading
+#      \/
+#
 
 #  Welcome message that is welcome %playername%
 Welcome-Messages: false
+Welcome-Titles: true
 
 # ScoreBoard
 ScoreBoard:

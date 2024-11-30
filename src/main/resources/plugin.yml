@@ -1,8 +1,7 @@
 name: MenuLobby
 version: '${project.version}'
 main: me.parsa.menulobby.MenuLobby
-depend:
-  - NoBlocks
+softdepend: [NoBlocks]
 commands:
   msupport:
     description: Opens a gui for support menu

@@ -12,7 +12,7 @@ public class mtest implements CommandExecutor {
         if (command.getName().equalsIgnoreCase("mtest")) {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
-                String replaced  = PlaceholderAPI.setPlaceholders(player, "%vault_group%");
+                String replaced  = PlaceholderAPI.setPlaceholders(player, "%player_ping%");
                 player.sendMessage(replaced);
             } else {
                 sender.sendMessage("This command can only be used by players!");
