@@ -3,6 +3,11 @@ version: '${project.version}'
 main: me.parsa.menulobby.MenuLobby
 softdepend: [NoBlocks]
 commands:
+  mtp:
+    description: Teleport
+    usage: /mtp
+    aliases:
+      - tp
   msupport:
     description: Opens a gui for support menu
     usage: /msupport
@@ -53,6 +58,9 @@ commands:
     description: Open a gui
     usage: /<command>
 permissions:
+  menulobby.tp:
+    description: Allows players to tp
+    default: op
   menulobby.gms:
     description: Allows to change game-modes to survival
   menulobby.unban:

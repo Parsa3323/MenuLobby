@@ -1,6 +1,10 @@
 package me.parsa.menulobby;
 
 
+import com.alessiodp.parties.api.Parties;
+import com.alessiodp.parties.api.interfaces.PartiesAPI;
+import com.alessiodp.parties.api.interfaces.Party;
+import com.alessiodp.parties.api.interfaces.PartyPlayer;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
@@ -24,9 +28,11 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.util.Map;
+import java.util.Set;
 //ds
 
 
@@ -135,6 +141,8 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getCommand("mmembers").setExecutor(new mMembers());
         getCommand("mgms").setExecutor(new mgms());
         getCommand("msupport").setExecutor(new msupport());
+        getCommand("mtp").setExecutor(new mtp());
+        getServer().getPluginManager().registerEvents(new TpInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new SupportInventoryListener(discord,website,store), this);
         getServer().getPluginManager().registerEvents(new SettingsInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new KickInventoryListener(), this);
@@ -191,6 +199,25 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         objective.getScore(ChatColor.YELLOW + "  Welcome to the Lobby! ").setScore(10);// Higher score is displayed on top
         objective.getScore(" ").setScore(6);
         objective.getScore(ChatColor.AQUA + "  Online Players:  " + Bukkit.getOnlinePlayers().size()).setScore(9);
+//        if (getServer().getPluginManager().getPlugin("Parties") != null) {
+//            PartiesAPI api = Parties.getApi();
+//            String party_description = null;
+//            String party_leader = null
+//            @NotNull Set<PartyPlayer> party_members = null;
+//            PartyPlayer player1 = api.getPartyPlayer(player.getUniqueId());
+//            if (player1.isInParty()) {
+//                Party party = api.getParty(player1.getPartyId());
+//                if (party != null) {
+//                    party_members = party.getOnlineMembers();
+//
+//                    objective.getScore(ChatColor.DARK_PURPLE + "Party:").setScore(2); // Party label
+//                    objective.getScore(ChatColor.LIGHT_PURPLE + "  Members: " + ChatColor.AQUA + party_members).setScore(1); // Members count
+//                    objective.getScore(ChatColor.LIGHT_PURPLE + "  Leader: " + ChatColor.GOLD + "PlayerName").setScore(0); // Leader name
+//                    objective.getScore(" ").setScore(-1);
+//                }
+//            }
+//
+//        }
         objective.getScore(" ").setScore(8);
         objective.getScore(ChatColor.GREEN + "  Available Games:  ").setScore(7);
         objective.getScore(" ").setScore(6);
