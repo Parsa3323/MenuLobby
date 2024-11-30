@@ -8,6 +8,7 @@ import me.parsa.menulobby.MenuLobby;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -85,6 +86,7 @@ public class PartyMenuUtils {
             }
 
             if (player.hasPermission("menulobby.admin")) {
+                player.playSound(player.getLocation(), Sound.NOTE_PLING, 1 , 1);
                 player.openInventory(bangui);
             } else {
                 player.sendMessage(ChatColor.RED + "You don't have permission to do that");

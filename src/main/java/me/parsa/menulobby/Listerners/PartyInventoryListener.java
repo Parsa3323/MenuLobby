@@ -9,6 +9,7 @@ import me.parsa.menulobby.utils.BanMenuUtils;
 import org.bukkit.BanList;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -38,6 +39,8 @@ public class PartyInventoryListener implements Listener {
 
                     if (pp.isInParty()) {
                         Party party = api.getParty(pp.getPartyId());
+                        p.sendMessage(ChatColor.GREEN + "Successfully removed the party refresh the page to see");
+                        p.playSound(p.getLocation(), Sound.NOTE_PLING, 1 , 1);
                         party.delete();
                     } else if (!pp.isInParty()) {
                         p.sendMessage(ChatColor.RED + "This person is not in the party");
