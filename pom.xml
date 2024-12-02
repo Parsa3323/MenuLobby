@@ -6,7 +6,7 @@
 
     <groupId>me.parsa</groupId>
     <artifactId>MenuLobby</artifactId>
-    <version>4.9</version>
+    <version>5.0</version>
     <packaging>jar</packaging>
 
     <name>MenuLobby</name>
@@ -73,6 +73,10 @@
             <id>alessiodp-repo</id>
             <url>https://repo.alessiodp.com/releases/</url>
         </repository>
+        <repository>
+            <id>andrei1058-repo</id>
+            <url>https://repo.andrei1058.dev/releases/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -108,6 +112,12 @@
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
             <version>1.33</version>
+        </dependency>
+        <dependency>
+            <groupId>com.andrei1058.bedwars</groupId>
+            <artifactId>bedwars-api</artifactId>
+            <version>23.12</version>
+            <scope>provided</scope>
         </dependency>
 
         <!--Bukkit API-->

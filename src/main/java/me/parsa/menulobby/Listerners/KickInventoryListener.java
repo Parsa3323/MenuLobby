@@ -33,11 +33,9 @@ public class KickInventoryListener implements Listener {
 
 
             }
-
-
-
+            e.setCancelled(true);
         }
-        e.setCancelled(true);
+
 
     }
 

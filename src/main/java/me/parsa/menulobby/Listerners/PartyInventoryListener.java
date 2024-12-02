@@ -48,10 +48,11 @@ public class PartyInventoryListener implements Listener {
                     }
 
                 }
+                e.setCancelled(true);
 
             }
         }
-        e.setCancelled(true);
+
 
     }
 

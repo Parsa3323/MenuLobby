@@ -49,12 +49,14 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
             return;
         }
 
+
         File configFile = new File(getDataFolder(), "config.yml");
 
         // Check if the config file exists, if not, copy the default one from resources
         if (!configFile.exists()) {
             saveResource("config.yml", false);  // 'false' means don't override if it already exists
         }
+
 
         // Now load the config
         FileConfiguration config = getConfig();
@@ -72,9 +74,13 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getServer().getConsoleSender().sendMessage(""); // Blank line for spacing
 
         if (getServer().getPluginManager().getPlugin("Parties") != null) {
-            getServer().getConsoleSender().sendMessage(ChatColor.GOLD + "Menu Lobby ->" + ChatColor.AQUA + " found parties plugin initializing");
-        } else if (getServer().getPluginManager().getPlugin("Pdarties") == null) {
-            getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "Menu Lobby ->" + ChatColor.AQUA + " we recommend downloading parties plugin for better menulobby work");
+            getServer().getConsoleSender().sendMessage(ChatColor.GOLD + "Menu Lobby ->" + ChatColor.AQUA + " Found parties plugin initializing");
+        } else if (getServer().getPluginManager().getPlugin("Parties") == null) {
+            getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "Menu Lobby ->" + ChatColor.AQUA + " We recommend downloading parties plugin for better menulobby work");
+
+        } else if (getServer().getPluginManager().getPlugin("bedwars1058") != null) {
+
+            getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "Menu Lobby ->" + ChatColor.AQUA + " Found bedwars1058 plugin initializing");
 
         }
 
@@ -94,6 +100,8 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         String discord = config.getString("support.discord");
         String website = config.getString("support.website");
         String store = config.getString("support.store");
+
+        String bedwars_title = config.getString("ScoreBoard.bedwars-title");
 
         //----
         boolean is_title = config.getBoolean("Welcome-Titles");
@@ -133,7 +141,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         //--------------------------------------------------------
 
         getServer().getPluginManager().registerEvents(new NoMob(this), this);
-        getServer().getPluginManager().registerEvents(new NoRain(), this);
+        getServer().getPluginManager().registerEvents(new NoRain(this), this);
         getServer().getPluginManager().registerEvents(new UnbanInventoryListener(), this);
         getCommand("mkick").setExecutor(new mkick());
         getCommand("m").setExecutor(new m(this));
@@ -155,9 +163,9 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getServer().getPluginManager().registerEvents(new SettingsInventoryListener(this), this);
         getServer().getPluginManager().registerEvents(new KickInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new BanInventoryListener(), this);
-        getServer().getPluginManager().registerEvents(new OnPlayerJoin(this, IDK, server_ip, score_title, is_achievements, is_score, is_title), this);
-        getServer().getPluginManager().registerEvents(new NoHunger(), this);
-        getServer().getPluginManager().registerEvents(new NoBlockDrop(), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerJoin(this, IDK, server_ip, score_title, is_achievements, is_score, is_title, bedwars_title), this);
+        getServer().getPluginManager().registerEvents(new NoHunger(this), this);
+        getServer().getPluginManager().registerEvents(new NoBlockDrop(this), this);
         getServer().getPluginManager().registerEvents(new NoHit(this), this);
         getServer().getPluginManager().registerEvents(new NoDamage(this, noDperm,isBoss), this);
 //        getServer().getPluginManager().registerEvents(new OnPlayerJoin(), this);
@@ -194,12 +202,15 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         sender.sendMessage(ChatColor.GRAY + "Usage: " + ChatColor.WHITE + usage);
         sender.sendMessage(""); // Adding space between commands for readability
     }
-    public void createScoreboard(Player player, String server_ip, String score_title) {
+    public void createScoreboard(Player player, String server_ip, String score_title, String bedwars) {
         // Get the Scoreboard Manager
         ScoreboardManager manager = Bukkit.getScoreboardManager();
         Scoreboard scoreboard = manager.getNewScoreboard();
 
         // Create the Objective
+        if (getServer().getPluginManager().getPlugin("bedwars1058") != null) {
+                score_title = bedwars;
+        }
         Objective objective = scoreboard.registerNewObjective( ChatColor.YELLOW + score_title, "dummy");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR); // Display on the side
 
@@ -226,6 +237,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
 //            }
 //
 //        }
+
         objective.getScore(" ").setScore(8);
         objective.getScore(ChatColor.GREEN + "  Available Games:  ").setScore(7);
         objective.getScore(" ").setScore(6);

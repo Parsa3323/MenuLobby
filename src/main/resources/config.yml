@@ -19,6 +19,8 @@ ScoreBoard:
   server-ip: "yourserver.com"
   # The menu title, its the title for score board
   menu-title: "Lobby"
+  # the menu title if plugin bedwars1058 enabled
+  bedwars-title: "Bedwars Lobby"
   # i'am no sure this will work
   showplayers: false # This part is still in alpha and enabling is not recommended
 # Achivments like when a player join the server for first time

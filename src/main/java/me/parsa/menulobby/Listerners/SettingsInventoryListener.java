@@ -41,11 +41,12 @@ public class SettingsInventoryListener implements Listener {
             } else if (e.getCurrentItem().getType() == Material.ENDER_STONE) {
                 PartyMenuUtils.openPartyMenu(ml, p);
             }
+            e.setCancelled(true);
 
         }
 
 
-        e.setCancelled(true);
+
 
     }
 }

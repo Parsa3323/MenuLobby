@@ -33,9 +33,12 @@ public class OnPlayerJoin implements Listener {
 
     private boolean is_score;
 
-    public OnPlayerJoin(MenuLobby pl, boolean msgE, String server_ip, String score_title, boolean is_achievements, boolean is_score, boolean is_title) {
+    private String bedwars;
+
+    public OnPlayerJoin(MenuLobby pl, boolean msgE, String server_ip, String score_title, boolean is_achievements, boolean is_score, boolean is_title, String bedwars) {
         this.msgE = msgE;
         this.pl = pl;
+        this.bedwars = bedwars;
         this.is_title = is_title;
         this.is_score = is_score;
         this.is_achievements = is_achievements;
@@ -52,7 +55,7 @@ public class OnPlayerJoin implements Listener {
 
         Player p = e.getPlayer();
         if (is_score) {
-            pl.createScoreboard(p, server_ip, score_title);
+            pl.createScoreboard(p, server_ip, score_title, bedwars);
         }
         if (msgE) {
             e.setJoinMessage(ChatColor.GREEN + "Welcome " + p.getName());

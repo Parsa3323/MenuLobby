@@ -1,6 +1,7 @@
 package me.parsa.menulobby.Events;
 
 import org.bukkit.ChatColor;
+import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,23 +15,27 @@ public class NoDamage implements Listener {
 
     boolean isEnabled;
 
+    private final World targetWorld;
+
     public NoDamage(Plugin pl, String No_perm, boolean is_Enabled) {
         this.no_perm = No_perm;
         this.isEnabled = is_Enabled;
-
+        this.targetWorld = pl.getServer().getWorld("0");
     }
 
     @EventHandler
     public void onPlayerDamagedSomeone(EntityDamageByEntityEvent e) {
-        if (isEnabled) {
-            Entity entity = e.getEntity();
-            if (entity instanceof Player) {
-                e.setCancelled(true);
+        if (e.getEntity().getWorld().equals(targetWorld)) {
+            if (isEnabled) {
+                Entity entity = e.getEntity();
+                if (entity instanceof Player) {
+                    e.setCancelled(true);
 
-                if (e.getDamager() instanceof Player) {
-                    Player p = (Player) e.getDamager();
-                    p.sendMessage(ChatColor.RED + no_perm);
+                    if (e.getDamager() instanceof Player) {
+                        Player p = (Player) e.getDamager();
+                        p.sendMessage(ChatColor.RED + no_perm);
 
+                    }
                 }
             }
         }

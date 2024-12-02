@@ -44,9 +44,9 @@ public class SupportInventoryListener implements Listener {
 
             }
 
-
+            e.setCancelled(true);
         }
-        e.setCancelled(true);
+
 
     }
 

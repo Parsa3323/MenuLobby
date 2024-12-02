@@ -22,6 +22,7 @@ public class TpInventoryListener implements Listener {
                 TpMenuUtils.confirmTp(p, whoToTp);
 
             }
+            e.setCancelled(true);
 
         } else if (e.getView().getTitle().equalsIgnoreCase("confirm tp")) {
 
@@ -50,9 +51,9 @@ public class TpInventoryListener implements Listener {
                 ps.sendMessage(ChatColor.AQUA + p.getName() + " Teleported you");
 
             }
-
+            e.setCancelled(true);
         }
-        e.setCancelled(true);
+
 
     }
 

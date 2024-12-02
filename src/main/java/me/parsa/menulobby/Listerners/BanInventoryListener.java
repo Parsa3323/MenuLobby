@@ -23,7 +23,7 @@ public class BanInventoryListener implements Listener {
                 BanMenuUtils.openConfigrmBanMenu(p, whoToBan);
 
             }
-
+            e.setCancelled(true);
         } else if (e.getView().getTitle().equalsIgnoreCase("Ban Con")) {
             System.out.println("opened You Want to ban? ------------------------");
 
@@ -37,9 +37,9 @@ public class BanInventoryListener implements Listener {
 
 
             }
-
+            e.setCancelled(true);
         }
-        e.setCancelled(true);
+
 
     }
 
