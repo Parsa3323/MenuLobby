@@ -60,6 +60,18 @@ commands:
     description: Open a gui
     usage: /<command>
 permissions:
+  menulobby.breakblocks:
+    description: break_blocks
+    default: op
+    children:
+      - menulobby.anvil
+      - menulobby.chest
+  menulobby.anvil:
+    description: allows opening anvils
+    default: op
+  menulobby.chest:
+    description: allows openning chests
+    default: op
   menulobby.tp:
     description: Allows players to tp
     default: op

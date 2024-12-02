@@ -1,39 +1,29 @@
 package me.parsa.menulobby;
 
 
-import com.alessiodp.parties.api.Parties;
-import com.alessiodp.parties.api.interfaces.PartiesAPI;
-import com.alessiodp.parties.api.interfaces.Party;
-import com.alessiodp.parties.api.interfaces.PartyPlayer;
-import me.clip.placeholderapi.PlaceholderAPI;
-import me.clip.placeholderapi.PlaceholderAPIPlugin;
-import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
-import me.clip.placeholderapi.expansion.manager.CloudExpansionManager;
-import me.clip.placeholderapi.expansion.manager.LocalExpansionManager;
 import me.parsa.menulobby.Commands.*;
 import me.parsa.menulobby.Events.*;
+import me.parsa.menulobby.Events.NoBlock.NoAnvilOpen;
 import me.parsa.menulobby.Events.NoBlock.NoBlockBreak;
+import me.parsa.menulobby.Events.NoBlock.NoChestOpen;
 import me.parsa.menulobby.Listerners.*;
-import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.util.Map;
-import java.util.Set;
 //ds
 
 
@@ -77,11 +67,11 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         } else if (getServer().getPluginManager().getPlugin("Parties") == null) {
             getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "Menu Lobby ->" + ChatColor.AQUA + " We recommend downloading parties plugin for better menulobby work");
 
-        } else if (getServer().getPluginManager().getPlugin("bedwars1058") != null) {
+        }if (getServer().getPluginManager().getPlugin("bedwars1058") != null) {
 
             getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "Menu Lobby ->" + ChatColor.AQUA + " Found bedwars1058 plugin initializing");
 
-        } else if (getServer().getPluginManager().getPlugin("NoBlocks") != null) {
+        }if (getServer().getPluginManager().getPlugin("NoBlocks") != null) {
 
             getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "Menu Lobby ->" + ChatColor.AQUA + " No need to download the NoBlocks plugin anymore! (you can delete it if you want)");
 
@@ -144,17 +134,15 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         //--------------------------------------------------------
         //-------------------------------------------Config Manager For NoBlockBreak
 
-
-        File blockFile = new File(getDataFolder(), "config.yml");
+        File blockFile = new File(getDataFolder(), "NoBlockBreak/noblocks.yml");
 
         // Check if the config file exists, if not, copy the default one from resources
-        if (!configFile.exists()) {
-            saveResource("NoBlockBreak/config.yml", false);  // 'false' means don't override if it already exists
+        if (!blockFile.exists()) {
+            saveResource("NoBlockBreak/noblocks.yml", false);  // 'false' means don't override if it already exists
         }
 
-
-        // Now load the config
-        FileConfiguration noBlock = getConfig();
+        // Load the custom configuration
+        FileConfiguration noBlock = YamlConfiguration.loadConfiguration(blockFile);
 
         // NoBlocks
         boolean is_no_block = noBlock.getBoolean("NoBlocks.enabled");
@@ -162,10 +150,20 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         String no_perm_no_blocks = noBlock.getString("NoBlocks.no-perm");
 
         // NoAnvils
+        boolean is_no_anvil = noBlock.getBoolean("NoAnvils.enabled");
+        String no_perm_no_anvil = noBlock.getString("NoAnvils.no-perm");
+
 
         // NoChests
+        boolean is_no_chest = noBlock.getBoolean("NoChests.enabled");
+        boolean only_spawn_world_no_chests = noBlock.getBoolean("NoChests.only-spawn-world");
+        String no_perm_no_chests = noBlock.getString("NoChests.no-perm");
 
-        getServer().getPluginManager().registerEvents(new NoBlockBreak(this, no_perm_no_blocks,is_no_block), this);
+        System.out.println(is_no_anvil  + " "  + is_no_chest +  " " + is_no_block);
+
+        getServer().getPluginManager().registerEvents(new NoChestOpen(this, is_no_chest, no_perm_no_chests, only_spawn_world_no_chests), this);
+        getServer().getPluginManager().registerEvents(new NoAnvilOpen(this, is_no_anvil, no_perm_no_anvil), this);
+        getServer().getPluginManager().registerEvents(new NoBlockBreak(this, no_perm_no_blocks, is_no_block, is_in_one_word_no_blocks), this);
         //------------------------------------------/Config Manager For NoBlockBreak
 
         getServer().getPluginManager().registerEvents(new NoMob(this), this);
