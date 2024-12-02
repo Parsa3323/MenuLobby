@@ -1,0 +1,30 @@
+#
+#  .__
+#  _____ |  |
+# /     \|  |      MenuLobby - By Parsa
+#|  Y Y  \  |__
+#|__|_|  /____/    Thanks for downloading
+#      \/
+#
+
+# as the plugin "NoBlocks" wasn't that good to not cancel in-game block-break events i made a built-in
+# no blocks plugin heres the config:
+
+NoBlocks:
+  # enable or disable no blocks feature if you have another plugins for it
+  enabled: true
+  # enabling is recommended because if you disable it, it blocks every block break in your server no matter in-game or not
+  only-spawn-world: true
+  # the message that when someone breaks blocks but doesn't have permission will get (You can use colors)
+  no-perm: "§cYou can't break blocks Sorry"
+NoAnvils:
+  # enable or disable no blocks feature if you have another plugins for it
+  enabled: false
+  no-perms: "§cSorry anvils are disabled on this server"
+NoChests:
+  # this includes ender chests
+  enabled: true
+  # same as the NoBlocks
+  only-spawn-world: true
+  # no perm msg
+  no-perm: "§cSorry chests/ender chests are disabled in this server"

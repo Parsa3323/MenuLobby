@@ -12,6 +12,7 @@ import me.clip.placeholderapi.expansion.manager.CloudExpansionManager;
 import me.clip.placeholderapi.expansion.manager.LocalExpansionManager;
 import me.parsa.menulobby.Commands.*;
 import me.parsa.menulobby.Events.*;
+import me.parsa.menulobby.Events.NoBlock.NoBlockBreak;
 import me.parsa.menulobby.Listerners.*;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.Bukkit;
@@ -43,11 +44,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
 //sd
     @Override
     public void onEnable() {
-        if (Bukkit.getPluginManager().getPlugin("MenuLobby") == null) {
-            getLogger().severe("MenuLobby was not found. Disabling...");
-            Bukkit.getPluginManager().disablePlugin(this);
-            return;
-        }
+
 
 
         File configFile = new File(getDataFolder(), "config.yml");
@@ -60,6 +57,8 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
 
         // Now load the config
         FileConfiguration config = getConfig();
+
+
 
         System.out.println("Succses");
 
@@ -81,6 +80,10 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         } else if (getServer().getPluginManager().getPlugin("bedwars1058") != null) {
 
             getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "Menu Lobby ->" + ChatColor.AQUA + " Found bedwars1058 plugin initializing");
+
+        } else if (getServer().getPluginManager().getPlugin("NoBlocks") != null) {
+
+            getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "Menu Lobby ->" + ChatColor.AQUA + " No need to download the NoBlocks plugin anymore! (you can delete it if you want)");
 
         }
 
@@ -139,6 +142,31 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
 //        }, 80L); // Delay by 20 ticks (1 second)
 
         //--------------------------------------------------------
+        //-------------------------------------------Config Manager For NoBlockBreak
+
+
+        File blockFile = new File(getDataFolder(), "config.yml");
+
+        // Check if the config file exists, if not, copy the default one from resources
+        if (!configFile.exists()) {
+            saveResource("NoBlockBreak/config.yml", false);  // 'false' means don't override if it already exists
+        }
+
+
+        // Now load the config
+        FileConfiguration noBlock = getConfig();
+
+        // NoBlocks
+        boolean is_no_block = noBlock.getBoolean("NoBlocks.enabled");
+        boolean is_in_one_word_no_blocks = noBlock.getBoolean("NoBlocks.only-spawn-world");
+        String no_perm_no_blocks = noBlock.getString("NoBlocks.no-perm");
+
+        // NoAnvils
+
+        // NoChests
+
+        getServer().getPluginManager().registerEvents(new NoBlockBreak(this, no_perm_no_blocks,is_no_block), this);
+        //------------------------------------------/Config Manager For NoBlockBreak
 
         getServer().getPluginManager().registerEvents(new NoMob(this), this);
         getServer().getPluginManager().registerEvents(new NoRain(this), this);
