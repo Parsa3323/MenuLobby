@@ -31,6 +31,7 @@ public class TpInventoryListener implements Listener {
 
             } else if (e.getCurrentItem().getType() == Material.POTATO_ITEM) {
                 String name = ChatColor.stripColor(e.getClickedInventory().getItem(4).getItemMeta().getDisplayName());
+                System.out.println(name);
                 Player ps = Bukkit.getPlayer(name);
 
                 p.teleport(ps.getLocation());

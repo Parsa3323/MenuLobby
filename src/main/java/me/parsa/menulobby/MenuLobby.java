@@ -1,12 +1,15 @@
 package me.parsa.menulobby;
 
 
+
 import me.parsa.menulobby.Commands.*;
 import me.parsa.menulobby.Events.*;
 import me.parsa.menulobby.Events.NoBlock.NoAnvilOpen;
 import me.parsa.menulobby.Events.NoBlock.NoBlockBreak;
 import me.parsa.menulobby.Events.NoBlock.NoChestOpen;
+import me.parsa.menulobby.Events.bedwars.joinLoggerE;
 import me.parsa.menulobby.Listerners.*;
+import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
@@ -21,6 +24,7 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.util.Map;
@@ -29,11 +33,20 @@ import java.util.Map;
 
 public final class MenuLobby extends JavaPlugin implements Listener, CommandExecutor {
 
-    private BossBar bossBar;
 
+    private BukkitAudiences adventure;
+
+    public @NotNull BukkitAudiences adventure() {
+        if(this.adventure == null) {
+            throw new IllegalStateException("Tried to access Adventure when the plugin was disabled!");
+        }
+        return this.adventure;
+    }
 //sd
     @Override
     public void onEnable() {
+
+        this.adventure = BukkitAudiences.create(this);
 
 
 
@@ -65,15 +78,15 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         if (getServer().getPluginManager().getPlugin("Parties") != null) {
             getServer().getConsoleSender().sendMessage(ChatColor.GOLD + "Menu Lobby ->" + ChatColor.AQUA + " Found parties plugin initializing");
         } else if (getServer().getPluginManager().getPlugin("Parties") == null) {
-            getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "Menu Lobby ->" + ChatColor.AQUA + " We recommend downloading parties plugin for better menulobby work");
+            getServer().getConsoleSender().sendMessage(ChatColor.GOLD + "Menu Lobby ->" + ChatColor.AQUA + " We recommend downloading parties plugin for better menulobby work");
 
         }if (getServer().getPluginManager().getPlugin("bedwars1058") != null) {
 
-            getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "Menu Lobby ->" + ChatColor.AQUA + " Found bedwars1058 plugin initializing");
+            getServer().getConsoleSender().sendMessage(ChatColor.GOLD + "Menu Lobby ->" + ChatColor.AQUA + " Found bedwars1058 plugin initializing");
 
         }if (getServer().getPluginManager().getPlugin("NoBlocks") != null) {
 
-            getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "Menu Lobby ->" + ChatColor.AQUA + " No need to download the NoBlocks plugin anymore! (you can delete it if you want)");
+            getServer().getConsoleSender().sendMessage(ChatColor.GOLD + "Menu Lobby ->" + ChatColor.AQUA + " No need to download the NoBlocks plugin anymore! (you can delete it if you want)");
 
         }
 
@@ -153,6 +166,9 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         boolean is_no_anvil = noBlock.getBoolean("NoAnvils.enabled");
         String no_perm_no_anvil = noBlock.getString("NoAnvils.no-perm");
 
+        boolean is_boss_bar = config.getBoolean("BossBar.enabled");
+        String boss_message = config.getString("BossBar.message");
+
 
         // NoChests
         boolean is_no_chest = noBlock.getBoolean("NoChests.enabled");
@@ -171,6 +187,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getServer().getPluginManager().registerEvents(new UnbanInventoryListener(), this);
         getCommand("mkick").setExecutor(new mkick());
         getCommand("m").setExecutor(new m(this));
+        getCommand("mtest2").setExecutor(new Countdown(this));
         getCommand("testkill").setExecutor(new test());
         getCommand("mfly").setExecutor(new mFly());
         getCommand("msettings").setExecutor(new msettings(this));
@@ -183,6 +200,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getCommand("msupport").setExecutor(new msupport());
         getCommand("mtp").setExecutor(new mtp());
         getCommand("mparties").setExecutor(new mparties(this));
+        getServer().getPluginManager().registerEvents(new BossBarHandler(this, is_boss_bar, boss_message), this);
         getServer().getPluginManager().registerEvents(new PartyInventoryListener(this), this);
         getServer().getPluginManager().registerEvents(new TpInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new SupportInventoryListener(discord,website,store), this);
@@ -194,6 +212,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getServer().getPluginManager().registerEvents(new NoBlockDrop(this), this);
         getServer().getPluginManager().registerEvents(new NoHit(this), this);
         getServer().getPluginManager().registerEvents(new NoDamage(this, noDperm,isBoss), this);
+//        getServer().getPluginManager().registerEvents(new joinLoggerE(), this);
 //        getServer().getPluginManager().registerEvents(new OnPlayerJoin(), this);
 
     }
@@ -202,6 +221,10 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        if(this.adventure != null) {
+            this.adventure.close();
+            this.adventure = null;
+        }
         System.out.println("MenuLobby Disabled");
     }
     public void showHelp(CommandSender sender) {

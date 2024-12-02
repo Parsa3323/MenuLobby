@@ -25,6 +25,14 @@ ScoreBoard:
   showplayers: false # This part is still in alpha and enabling is not recommended
 # Achivments like when a player join the server for first time
 achievements: true
+# You know...
+BossBar:
+  # This is beta and may have some bugs
+  enabled: true
+  # message on bossbar
+  message: "You Are Playing On YourServer.com"
+
+
 #----------
 support:
   discord: "https://example.com/discord"

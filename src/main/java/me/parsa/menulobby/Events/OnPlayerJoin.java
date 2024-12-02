@@ -1,10 +1,10 @@
 package me.parsa.menulobby.Events;
 
 import me.parsa.menulobby.MenuLobby;
+import net.kyori.adventure.audience.Audience;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.ChatColor;
-import org.bukkit.Sound;
-import org.bukkit.Statistic;
+import net.minecraft.server.v1_16_R3.PlayerList;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,6 +12,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.Plugin;
 import org.inventivetalent.bossbar.BossBarAPI;
 
+import javax.annotation.Nullable;
 import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,6 +36,10 @@ public class OnPlayerJoin implements Listener {
 
     private String bedwars;
 
+    private Location spawnLocation = Bukkit.getServer().getWorlds().get(0).getSpawnLocation();
+
+    private World spawn_world = spawnLocation.getWorld();
+
     public OnPlayerJoin(MenuLobby pl, boolean msgE, String server_ip, String score_title, boolean is_achievements, boolean is_score, boolean is_title, String bedwars) {
         this.msgE = msgE;
         this.pl = pl;
@@ -45,15 +50,19 @@ public class OnPlayerJoin implements Listener {
         this.score_title = score_title;
         this.server_ip = server_ip;
     }
-
+//    private BossBarUtils bossBarUtils;
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
-
+//        Audience playerAudience = this.pl.adventure().player(e.getPlayer());
+//
+//        bossBarUtils.showMyBossBar(playerAudience);
 
         ArrayList<Player> playerArrayList10 = new ArrayList<>();
         ArrayList<Player> playerArrayList30 = new ArrayList<>();
 
         Player p = e.getPlayer();
+
+
         if (is_score) {
             pl.createScoreboard(p, server_ip, score_title, bedwars);
         }

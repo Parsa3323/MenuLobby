@@ -63,7 +63,7 @@ public class TpMenuUtils {
 
         ItemStack user = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
         ItemMeta user_meta = user.getItemMeta();
-        user_meta.setDisplayName(player.getName());
+        user_meta.setDisplayName(target.getName());
         user.setItemMeta(user_meta);
         confirm_menu.setItem(4, user);
 
