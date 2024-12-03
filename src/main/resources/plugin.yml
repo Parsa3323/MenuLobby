@@ -3,6 +3,8 @@ version: '${project.version}'
 main: me.parsa.menulobby.MenuLobby
 softdepend: [NoBlocks, BedWars1058, Parties]
 commands:
+  mplayer:
+    description: Manage your users
   mtest2:
     description: Another test cmd
   mparties:

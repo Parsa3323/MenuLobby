@@ -3,17 +3,11 @@ package me.parsa.menulobby;
 
 
 import me.parsa.menulobby.Commands.*;
-import me.parsa.menulobby.Discord.Chat;
 import me.parsa.menulobby.Events.*;
 import me.parsa.menulobby.Events.NoBlock.NoAnvilOpen;
 import me.parsa.menulobby.Events.NoBlock.NoBlockBreak;
 import me.parsa.menulobby.Events.NoBlock.NoChestOpen;
 import me.parsa.menulobby.Listerners.*;
-import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.entities.Activity;
-import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
-import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -31,9 +25,7 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.PrintStream;
 import java.util.Map;
 //ds
 
@@ -50,9 +42,9 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         return this.adventure;
     }
 
-    private JDA jda;
-
-    private TextChannel discordChannel;
+//    private JDA jda;
+//
+//    private TextChannel discordChannel;
 //sd
     @Override
     public void onEnable() {
@@ -141,37 +133,37 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
 
         ConsoleCommandSender consoleCommandSender = Bukkit.getConsoleSender();
         //----------------------------------------------------------------------------------------------------------------DISCORD
-        File Discordyml = new File(getDataFolder(), "Discord/discord.yml");
-
-
-        if (!Discordyml.exists()) {
-            saveResource("Discord/discord.yml", false);
-        }
-
-
-        FileConfiguration discordyml = YamlConfiguration.loadConfiguration(Discordyml);
-
-        String TOKEN_DISCORD = discordyml.getString("token");
-        boolean discord_enabled = discordyml.getBoolean("enabled");
-
-        if (discord_enabled) {
-            try {
-                jda = JDABuilder.createDefault(TOKEN_DISCORD).enableIntents(
-                                GatewayIntent.GUILD_MESSAGES,     // For messages in guilds
-                                GatewayIntent.DIRECT_MESSAGES,    // For DMs
-                                GatewayIntent.MESSAGE_CONTENT,    // Enable Message Content Intent
-                                GatewayIntent.GUILD_MEMBERS    // For member updates
-                        )
-                        .setActivity(Activity.playing("Minecraft"))
-                        .build();
-                jda.awaitReady(); // Wait for the bot to be ready
-                boolean is_e = true;
-                jda.addEventListener(new Chat(this, is_e));
-                getLogger().info("Discord bot is running!");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+//        File Discordyml = new File(getDataFolder(), "Discord/discord.yml");
+//
+//
+//        if (!Discordyml.exists()) {
+//            saveResource("Discord/discord.yml", false);
+//        }
+//
+//
+//        FileConfiguration discordyml = YamlConfiguration.loadConfiguration(Discordyml);
+//
+//        String TOKEN_DISCORD = discordyml.getString("token");
+//        boolean discord_enabled = discordyml.getBoolean("enabled");
+//
+//        if (discord_enabled) {
+//            try {
+//                jda = JDABuilder.createDefault(TOKEN_DISCORD).enableIntents(
+//                                GatewayIntent.GUILD_MESSAGES,     // For messages in guilds
+//                                GatewayIntent.DIRECT_MESSAGES,    // For DMs
+//                                GatewayIntent.MESSAGE_CONTENT,    // Enable Message Content Intent
+//                                GatewayIntent.GUILD_MEMBERS    // For member updates
+//                        )
+//                        .setActivity(Activity.playing("Minecraft"))
+//                        .build();
+//                jda.awaitReady(); // Wait for the bot to be ready
+//                boolean is_e = true;
+//                jda.addEventListener(new Chat(this, is_e));
+//                getLogger().info("Discord bot is running!");
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
 
         //------------------------------------------------------------------------------------------------------------------------------
         //--------------------------------------------------------
@@ -224,6 +216,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getCommand("munban").setExecutor(new munban());
         getCommand("mtest").setExecutor(new mtest());
         getCommand("mreload").setExecutor(new mReload());
+        getCommand("mplayer").setExecutor(new mplayer());
         getCommand("mgmc").setExecutor(new mgmc());
         getCommand("mmembers").setExecutor(new mMembers());
         getCommand("mgms").setExecutor(new mgms());
@@ -231,6 +224,8 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getCommand("mtp").setExecutor(new mtp());
         //ds
         getCommand("mparties").setExecutor(new mparties(this));
+        getServer().getPluginManager().registerEvents(new ShiftInventoryListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new BossBarHandler(this, is_boss_bar, boss_message), this);
         getServer().getPluginManager().registerEvents(new PartyInventoryListener(this), this);
         getServer().getPluginManager().registerEvents(new TpInventoryListener(), this);
