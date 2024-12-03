@@ -1,0 +1,44 @@
+#
+#        .__
+#  _____ |  |
+# /     \|  |      MenuLobby - By Parsa
+#|  Y Y  \  |__
+#|__|_|  /____/    Thanks for downloading
+#      \/
+#
+
+#    _______   __       _______.  ______   ______   .______       _______
+#    |       \ |  |     /       | /      | /  __  \  |   _  \     |       \
+#    |  .--.  ||  |    |   (----`|  ,----'|  |  |  | |  |_)  |    |  .--.  |
+#    |  |  |  ||  |     \   \    |  |     |  |  |  | |      /     |  |  |  |
+#    |  '--'  ||  | .----)   |   |  `----.|  `--'  | |  |\  \----.|  '--'  |
+#    |_______/ |__| |_______/     \______| \______/  | _| `._____||_______/
+
+# The feature discord, is in alpha so if you don't like server to lose resources
+
+enabled: false
+
+# The token for authenticating your Discord bot with the Discord API.
+# It should be kept private and secure to prevent unauthorized access.
+# Replace "YOURTOKEN" with the actual token for your bot.
+token: "YOURTOKEN"
+
+# The unique ID of your Discord server (guild).
+# This is used to identify the server where the bot will operate.
+# You can find the guild ID by enabling Developer Mode in Discord.
+guild-id: "10000000000"
+
+# The user ID of the owner of the bot.
+# This is typically used to grant special privileges or for bot management.
+# Make sure to replace this with your actual Discord user ID.
+owner-id: "10000000000000"
+
+# The command prefix for your bot.
+# This is used to identify messages as bot commands.
+# Replace "!" with a different prefix if desired, but ensure it is not commonly used in chat.
+prefix: "!"
+
+# Permission rules will be added soon.
+# These rules define which permissions are required for specific bot actions.
+# Ensure that they are configured carefully to avoid unintended issues.
+#permission-rules: ["100", "100"]

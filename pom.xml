@@ -6,7 +6,7 @@
 
     <groupId>me.parsa</groupId>
     <artifactId>MenuLobby</artifactId>
-    <version>5.1</version>
+    <version>5.2</version>
     <packaging>jar</packaging>
 
     <name>MenuLobby</name>
@@ -119,6 +119,11 @@
             <artifactId>bedwars-api</artifactId>
             <version>23.12</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.dv8tion</groupId>
+            <artifactId>JDA</artifactId>
+            <version>5.0.0-beta.13</version>
         </dependency>
 
         <!--Bukkit API-->
