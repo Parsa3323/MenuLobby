@@ -1,5 +1,6 @@
 package me.parsa.menulobby.Events;
 
+import me.parsa.menulobby.Discord.WebHookSender;
 import me.parsa.menulobby.MenuLobby;
 import net.kyori.adventure.audience.Audience;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -35,11 +36,15 @@ public class OnPlayerJoin implements Listener {
 
     private String bedwars;
 
+    private String webhook_url;
+
+    private boolean is_enabled_web;
+
     private Location spawnLocation = Bukkit.getServer().getWorlds().get(0).getSpawnLocation();
 
     private World spawn_world = spawnLocation.getWorld();
 
-    public OnPlayerJoin(MenuLobby pl, boolean msgE, String server_ip, String score_title, boolean is_achievements, boolean is_score, boolean is_title, String bedwars) {
+    public OnPlayerJoin(MenuLobby pl, boolean msgE, String server_ip, String score_title, boolean is_achievements, boolean is_score, boolean is_title, String bedwars, String webhook_url, boolean is_enabled_web) {
         this.msgE = msgE;
         this.pl = pl;
         this.bedwars = bedwars;
@@ -47,7 +52,9 @@ public class OnPlayerJoin implements Listener {
         this.is_score = is_score;
         this.is_achievements = is_achievements;
         this.score_title = score_title;
+        this.is_enabled_web = is_enabled_web;
         this.server_ip = server_ip;
+        this.webhook_url = webhook_url;
     }
 //    private BossBarUtils bossBarUtils;
     @EventHandler
@@ -55,6 +62,9 @@ public class OnPlayerJoin implements Listener {
 //        Audience playerAudience = this.pl.adventure().player(e.getPlayer());
 //
 //        bossBarUtils.showMyBossBar(playerAudience);
+        if (is_enabled_web) {
+            WebHookSender.sendWebhookMessage(e.getPlayer().getName() + "Joined the server ", webhook_url);
+        }
 
         ArrayList<Player> playerArrayList10 = new ArrayList<>();
         ArrayList<Player> playerArrayList30 = new ArrayList<>();

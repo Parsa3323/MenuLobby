@@ -56,9 +56,14 @@ public class PlayerMenuUtils {
         msg.setItemMeta(mmeta);
         menu.setItem(4, msg);
 
+        if (player.hasPermission("menulobby.admin")) {
+            player.playSound(player.getLocation(), Sound.NOTE_PLING, 1 , 1);
+            main.openInventory(menu);
+        } else {
+            player.sendMessage(ChatColor.RED + "You don't have permission");
+        }
 
-        player.playSound(player.getLocation(), Sound.NOTE_PLING, 1 , 1);
-        main.openInventory(menu);
+
 
     }
     public static void openWarnMenu(Player player, Player target) {
@@ -103,8 +108,13 @@ public class PlayerMenuUtils {
         back.setItemMeta(backMeta);
         confirm.setItem(8, back);
 
-        player.playSound(player.getLocation(), Sound.NOTE_PLING, 1 , 1);
-        player.openInventory(confirm);
+        if (player.hasPermission("menulobby.admin")) {
+            player.playSound(player.getLocation(), Sound.NOTE_PLING, 1 , 1);
+            player.openInventory(confirm);
+        } else {
+            player.sendMessage(ChatColor.RED + "You don't have permission");
+        }
+
     }
 
 }

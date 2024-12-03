@@ -201,6 +201,9 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         boolean only_spawn_world_no_chests = noBlock.getBoolean("NoChests.only-spawn-world");
         String no_perm_no_chests = noBlock.getString("NoChests.no-perm");
 
+        String webhook_url = config.getString("webhooks.url");
+        boolean is_webhook = config.getBoolean("webhooks.enabled");
+
         System.out.println(is_no_anvil  + " "  + is_no_chest +  " " + is_no_block);
 
         getServer().getPluginManager().registerEvents(new NoChestOpen(this, is_no_chest, no_perm_no_chests, only_spawn_world_no_chests), this);
@@ -237,7 +240,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getServer().getPluginManager().registerEvents(new SettingsInventoryListener(this), this);
         getServer().getPluginManager().registerEvents(new KickInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new BanInventoryListener(), this);
-        getServer().getPluginManager().registerEvents(new OnPlayerJoin(this, IDK, server_ip, score_title, is_achievements, is_score, is_title, bedwars_title), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerJoin(this, IDK, server_ip, score_title, is_achievements, is_score, is_title, bedwars_title, webhook_url, is_webhook), this);
         getServer().getPluginManager().registerEvents(new NoHunger(this), this);
         getServer().getPluginManager().registerEvents(new NoBlockDrop(this), this);
         getServer().getPluginManager().registerEvents(new NoHit(this), this);
