@@ -62,9 +62,7 @@ public class OnPlayerJoin implements Listener {
 //        Audience playerAudience = this.pl.adventure().player(e.getPlayer());
 //
 //        bossBarUtils.showMyBossBar(playerAudience);
-        if (is_enabled_web) {
-            WebHookSender.sendWebhookMessage(e.getPlayer().getName() + "Joined the server ", webhook_url);
-        }
+
 
         ArrayList<Player> playerArrayList10 = new ArrayList<>();
         ArrayList<Player> playerArrayList30 = new ArrayList<>();
@@ -116,6 +114,9 @@ public class OnPlayerJoin implements Listener {
                     p.sendMessage(ChatColor.GOLD + "===========================");
                 }
             }
+        }
+        if (is_enabled_web) {
+            WebHookSender.sendWebhookMessage(e.getPlayer().getName() + " Joined the server ", webhook_url);
         }
         //System.out.printf(p.getName() + "Joined The server");
     }
