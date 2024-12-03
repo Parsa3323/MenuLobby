@@ -23,12 +23,12 @@ public class KickInventoryListener implements Listener {
 
                 Player whoToBan = p.getServer().getPlayerExact(ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName()));
                 if (whoToBan != null && !whoToBan.equals(p)) {
-                    whoToBan.kickPlayer(ChatColor.RED + "You ave been kicked by " + p.getName());
+                    whoToBan.kickPlayer(ChatColor.RED + "You have been kicked by " + p.getName());
                 } else if (whoToBan.equals(p)) {
-                    whoToBan.sendMessage(ChatColor.RED + "You Can't Ban your self");
+                    whoToBan.sendMessage(ChatColor.RED + "You Can't kick your self");
 
                 } else {
-                    p.sendMessage("Cannot Ban");
+                    p.sendMessage("Cannot kick");
                 }
 
 

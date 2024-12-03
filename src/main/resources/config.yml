@@ -38,3 +38,7 @@ support:
   discord: "https://example.com/discord"
   website: "https://example.com"
   store: "https://store.example.com"
+warn:
+  cheat: "you got 1 warn reason: cheat"
+  toxic: "you got 1 warn reason: toxicity"
+  crossteaming: "you got 1 warn reason: crossteaming / teamuping"

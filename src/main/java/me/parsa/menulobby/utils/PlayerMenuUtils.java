@@ -3,6 +3,7 @@ package me.parsa.menulobby.utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -19,11 +20,11 @@ public class PlayerMenuUtils {
         ArrayList<String> lore = new ArrayList<>();
         lore.add("   ");
         lore.add("   ");
+        lore.add(ChatColor.YELLOW + "Click to Open");
 
         ItemStack playerh = new ItemStack(Material.SKULL_ITEM, 1, (short) 1);
         ItemMeta playerh_meta = playerh.getItemMeta();
         playerh_meta.setDisplayName(ChatColor.DARK_PURPLE + player.getName());
-        playerh_meta.setLore(lore);
         playerh.setItemMeta(playerh_meta);
         menu.setItem(22, playerh);
 
@@ -55,29 +56,55 @@ public class PlayerMenuUtils {
         msg.setItemMeta(mmeta);
         menu.setItem(4, msg);
 
+
+        player.playSound(player.getLocation(), Sound.NOTE_PLING, 1 , 1);
         main.openInventory(menu);
 
     }
-    public static void openAnvilGUI(Player player) {
+    public static void openWarnMenu(Player player, Player target) {
+        Inventory confirm = Bukkit.createInventory(player, 9, "warn");
 
-        Inventory anvilInventory = Bukkit.createInventory(null, 9, "Anvil");
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add("   ");
+        lore.add("   ");
+        lore.add(ChatColor.YELLOW + "Click to Open");
 
+        ItemStack cheat = new ItemStack(Material.BOW, 1);
+        ItemMeta cheatmeta = cheat.getItemMeta();
+        cheatmeta.setDisplayName(ChatColor.RED + "Cheat");
+        cheatmeta.setLore(lore);
+        cheat.setItemMeta(cheatmeta);
+        confirm.setItem(0, cheat);
 
-        ItemStack placeholderItem = new ItemStack(Material.IRON_SWORD);
-        ItemMeta meta = placeholderItem.getItemMeta();
-        meta.setDisplayName("Rename Me!");
-        placeholderItem.setItemMeta(meta);
+        ItemStack toxic = new ItemStack(Material.ENDER_STONE, 1);
+        ItemMeta toxicmeta = toxic.getItemMeta();
+        toxicmeta.setLore(lore);
+        toxicmeta.setDisplayName(ChatColor.AQUA + "Toxicity");
+        toxic.setItemMeta(toxicmeta);
+        confirm.setItem(6, toxic);
 
-        anvilInventory.setItem(0, placeholderItem);
+        ItemStack cross = new ItemStack(Material.REDSTONE, 1);
+        ItemMeta cmeta = cross.getItemMeta();
+        cmeta.setDisplayName(ChatColor.RED + "cross-teaming");
+        cmeta.setLore(lore);
+        cross.setItemMeta(cmeta);
+        confirm.setItem(2, cross);
 
+        ItemStack players = new ItemStack(Material.SKULL_ITEM, 1, (short) 1);
+        ItemMeta playerMeta = players.getItemMeta();
+        playerMeta.setDisplayName(target.getName());
+        players.setItemMeta(playerMeta);
+        confirm.setItem(4, players);
 
-        anvilInventory.setItem(1, new ItemStack(Material.NAME_TAG));
+        ItemStack back = new ItemStack(Material.BARRIER, 1);
+        ItemMeta backMeta = back.getItemMeta();
+        backMeta.setDisplayName(ChatColor.GREEN + "Back");
+        backMeta.setLore(lore);
+        back.setItemMeta(backMeta);
+        confirm.setItem(8, back);
 
-
-        anvilInventory.setItem(2, new ItemStack(Material.IRON_SWORD));
-
-
-        player.openInventory(anvilInventory);
+        player.playSound(player.getLocation(), Sound.NOTE_PLING, 1 , 1);
+        player.openInventory(confirm);
     }
 
 }

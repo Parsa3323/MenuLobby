@@ -192,6 +192,10 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         String boss_message = config.getString("BossBar.message");
 
 
+        String toxic_warn = config.getString("warn.toxic");
+        String chaet_warn = config.getString("warn.cheat");
+        String cross_warn = config.getString("warn.crossteaming");
+
         // NoChests
         boolean is_no_chest = noBlock.getBoolean("NoChests.enabled");
         boolean only_spawn_world_no_chests = noBlock.getBoolean("NoChests.only-spawn-world");
@@ -225,7 +229,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         //ds
         getCommand("mparties").setExecutor(new mparties(this));
         getServer().getPluginManager().registerEvents(new ShiftInventoryListener(), this);
-        getServer().getPluginManager().registerEvents(new PlayerInventoryListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerInventoryListener(toxic_warn, cross_warn, chaet_warn), this);
         getServer().getPluginManager().registerEvents(new BossBarHandler(this, is_boss_bar, boss_message), this);
         getServer().getPluginManager().registerEvents(new PartyInventoryListener(this), this);
         getServer().getPluginManager().registerEvents(new TpInventoryListener(), this);
