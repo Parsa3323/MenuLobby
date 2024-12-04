@@ -6,7 +6,7 @@
 
     <groupId>me.parsa</groupId>
     <artifactId>MenuLobby</artifactId>
-    <version>5.5</version>
+    <version>5.6</version>
     <packaging>jar</packaging>
 
     <name>MenuLobby</name>

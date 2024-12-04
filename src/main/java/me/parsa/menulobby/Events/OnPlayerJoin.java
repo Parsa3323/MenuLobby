@@ -2,11 +2,14 @@ package me.parsa.menulobby.Events;
 
 import me.parsa.menulobby.Discord.WebHookSender;
 import me.parsa.menulobby.MenuLobby;
+import me.parsa.menulobby.utils.OnJoinAdminUtils;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 
@@ -37,7 +40,9 @@ public class OnPlayerJoin implements Listener {
 
     private World spawn_world = spawnLocation.getWorld();
 
-    public OnPlayerJoin(MenuLobby pl, boolean msgE, String server_ip, String score_title, boolean is_achievements, boolean is_score, boolean is_title, String bedwars, String webhook_url, boolean is_enabled_web) {
+    private JavaPlugin plugin;
+
+    public OnPlayerJoin(MenuLobby pl, boolean msgE, String server_ip, String score_title, boolean is_achievements, boolean is_score, boolean is_title, String bedwars, String webhook_url, boolean is_enabled_web, JavaPlugin plugin) {
         this.msgE = msgE;
         this.pl = pl;
         this.bedwars = bedwars;
@@ -48,6 +53,7 @@ public class OnPlayerJoin implements Listener {
         this.is_enabled_web = is_enabled_web;
         this.server_ip = server_ip;
         this.webhook_url = webhook_url;
+        this.plugin = plugin;
     }
 //    private BossBarUtils bossBarUtils;
     @EventHandler
@@ -80,6 +86,19 @@ public class OnPlayerJoin implements Listener {
                 p.sendMessage(ChatColor.GOLD + "===========================");
             }
         }
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        OnJoinAdminUtils.giveAdmin(p);
+                    }
+                }.runTaskLater(plugin, 40L);
+
+            }
+        }.runTaskLater(plugin, 20L);
         if (is_title) {
             p.sendTitle(ChatColor.GREEN + "Welcome" + " " + p.getName(), ChatColor.AQUA + "Enjoy Your Time");
         }
@@ -108,9 +127,9 @@ public class OnPlayerJoin implements Listener {
                 }
             }
         }
-        if (is_enabled_web) {
-            WebHookSender.sendWebhookMessage(e.getPlayer().getName() + " Joined the server ", webhook_url);
-        }
+//        if (is_enabled_web) {
+//            WebHookSender.sendWebhookMessage(e.getPlayer().getName() + " Joined the server ", webhook_url);
+//        }
         //System.out.printf(p.getName() + "Joined The server");
     }
 }

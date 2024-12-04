@@ -234,6 +234,8 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getCommand("mparties").setExecutor(new mparties(this));
         getServer().getPluginManager().registerEvents(new TagListener(this), this);
         getServer().getPluginManager().registerEvents(new ShiftInventoryListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerPreJoin(webhook_url, is_webhook), this);
+        getServer().getPluginManager().registerEvents(new AdminPanelEvent(this, this), this);
         getServer().getPluginManager().registerEvents(new PlayerInventoryListener(toxic_warn, cross_warn, chaet_warn), this);
         getServer().getPluginManager().registerEvents(new BossBarHandler(this, is_boss_bar, boss_message), this);
         getServer().getPluginManager().registerEvents(new PartyInventoryListener(this), this);
@@ -242,7 +244,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getServer().getPluginManager().registerEvents(new SettingsInventoryListener(this), this);
         getServer().getPluginManager().registerEvents(new KickInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new BanInventoryListener(), this);
-        getServer().getPluginManager().registerEvents(new OnPlayerJoin(this, IDK, server_ip, score_title, is_achievements, is_score, is_title, bedwars_title, webhook_url, is_webhook), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerJoin(this, IDK, server_ip, score_title, is_achievements, is_score, is_title, bedwars_title, webhook_url, is_webhook, this), this);
         getServer().getPluginManager().registerEvents(new NoHunger(this), this);
         getServer().getPluginManager().registerEvents(new NoBlockDrop(this), this);
         getServer().getPluginManager().registerEvents(new NoHit(this), this);

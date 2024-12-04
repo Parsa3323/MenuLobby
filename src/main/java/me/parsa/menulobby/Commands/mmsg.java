@@ -19,10 +19,14 @@ public class mmsg implements CommandExecutor {
                     String name = args[0];
                     String message = args[1];
                     Player target = Bukkit.getPlayer(name);
-                    target.sendMessage(ChatColor.YELLOW + " " + player.getName() + " ➤ " + target.getName() + ChatColor.DARK_GRAY + ": " + message);
-                    target.playSound(player.getLocation(), Sound.ORB_PICKUP, 1 , 1);
-                    player.sendMessage(ChatColor.YELLOW + " " + player.getName() + " ➤ " + target.getName() + ChatColor.DARK_GRAY + ": " + message);
-                    player.playSound(player.getLocation(), Sound.ORB_PICKUP, 1 , 1);
+                    if (!player.equals(target)) {
+                        target.sendMessage(ChatColor.YELLOW + " " + player.getName() + " ➤ " + target.getName() + ChatColor.DARK_GRAY + ": " + message);
+                        target.playSound(player.getLocation(), Sound.ORB_PICKUP, 1 , 1);
+                        player.sendMessage(ChatColor.YELLOW + " " + player.getName() + " ➤ " + target.getName() + ChatColor.DARK_GRAY + ": " + message);
+                        player.playSound(player.getLocation(), Sound.ORB_PICKUP, 1 , 1);
+                    } else {
+                        player.sendMessage(ChatColor.RED + "You can't dm yourself");
+                    }
                 } else if (args.length < 2) {
                     player.sendMessage(ChatColor.AQUA + "Usage: " + ChatColor.GOLD + "/mmsg <Player> <Message>");
                 }
