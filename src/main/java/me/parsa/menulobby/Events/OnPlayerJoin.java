@@ -2,21 +2,14 @@ package me.parsa.menulobby.Events;
 
 import me.parsa.menulobby.Discord.WebHookSender;
 import me.parsa.menulobby.MenuLobby;
-import net.kyori.adventure.audience.Audience;
-import net.md_5.bungee.api.chat.TextComponent;
-import net.minecraft.server.v1_16_R3.PlayerList;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.plugin.Plugin;
 
-import javax.annotation.Nullable;
-import java.io.Console;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+
 
 public class OnPlayerJoin implements Listener {
 

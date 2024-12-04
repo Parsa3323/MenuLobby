@@ -2,6 +2,7 @@ package me.parsa.menulobby.Commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -19,9 +20,11 @@ public class mmsg implements CommandExecutor {
                     String message = args[1];
                     Player target = Bukkit.getPlayer(name);
                     target.sendMessage(ChatColor.YELLOW + " " + player.getName() + " ➤ " + target.getName() + ChatColor.DARK_GRAY + ": " + message);
-
+                    target.playSound(player.getLocation(), Sound.ORB_PICKUP, 1 , 1);
+                    player.sendMessage(ChatColor.YELLOW + " " + player.getName() + " ➤ " + target.getName() + ChatColor.DARK_GRAY + ": " + message);
+                    player.playSound(player.getLocation(), Sound.ORB_PICKUP, 1 , 1);
                 } else if (args.length < 2) {
-                    player.sendMessage(ChatColor.AQUA + "Usage:" + ChatColor.GOLD + "/mmsg <Player> <Message>");
+                    player.sendMessage(ChatColor.AQUA + "Usage: " + ChatColor.GOLD + "/mmsg <Player> <Message>");
                 }
             } else {
                 sender.sendMessage("This command can only be used by players!");

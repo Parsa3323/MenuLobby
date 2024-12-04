@@ -232,6 +232,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getCommand("mtp").setExecutor(new mtp());
         //ds
         getCommand("mparties").setExecutor(new mparties(this));
+        getServer().getPluginManager().registerEvents(new TagListener(this), this);
         getServer().getPluginManager().registerEvents(new ShiftInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerInventoryListener(toxic_warn, cross_warn, chaet_warn), this);
         getServer().getPluginManager().registerEvents(new BossBarHandler(this, is_boss_bar, boss_message), this);

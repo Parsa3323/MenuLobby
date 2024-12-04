@@ -6,7 +6,7 @@
 
     <groupId>me.parsa</groupId>
     <artifactId>MenuLobby</artifactId>
-    <version>5.4</version>
+    <version>5.5</version>
     <packaging>jar</packaging>
 
     <name>MenuLobby</name>
@@ -108,12 +108,7 @@
             <artifactId>okhttp</artifactId>
             <version>4.9.3</version>
         </dependency>
-
-        <dependency>
-            <groupId>com.andrei1058.bedwars</groupId>
-            <artifactId>bedwars-api</artifactId>
-            <version>23.12</version>
-        </dependency>
+        
         <!--        <dependency>-->
 <!--            <groupId>net.dv8tion</groupId>-->
 <!--            <artifactId>JDA</artifactId>-->
