@@ -68,17 +68,27 @@ public class PlayerInventoryListener implements Listener {
                 p.playSound(p.getLocation(), Sound.ORB_PICKUP, 1 , 1);
                 String name = ChatColor.stripColor(e.getClickedInventory().getItem(4).getItemMeta().getDisplayName());
                 Player target = Bukkit.getPlayer(name);
-                target.sendMessage(cheat);
+                target.sendMessage(ChatColor.GOLD + "========== Warn! =========");
+                target.sendMessage(ChatColor.AQUA + "" + cheat);
+                target.sendMessage(ChatColor.GREEN + "Warned by: " + p.getName());
+                target.sendMessage(ChatColor.GOLD + "===========================");
             } else if (e.getCurrentItem().getType() == Material.REDSTONE) {
                 p.playSound(p.getLocation(), Sound.ORB_PICKUP, 1 , 1);
                 String name = ChatColor.stripColor(e.getClickedInventory().getItem(4).getItemMeta().getDisplayName());
                 Player target = Bukkit.getPlayer(name);
-                target.sendMessage(cross);
+//                target.sendMessage(cross);
+                target.sendMessage(ChatColor.GOLD + "========== Warn! =========");
+                target.sendMessage(ChatColor.AQUA + "" + cross);
+                target.sendMessage(ChatColor.GREEN + "Warned by: " + p.getName());
+                target.sendMessage(ChatColor.GOLD + "===========================");
             } else if (e.getCurrentItem().getType() == Material.ENDER_STONE) {
                 p.playSound(p.getLocation(), Sound.ORB_PICKUP, 1 , 1);
                 String name = ChatColor.stripColor(e.getClickedInventory().getItem(4).getItemMeta().getDisplayName());
                 Player target = Bukkit.getPlayer(name);
-                target.sendMessage(toxic);
+                target.sendMessage(ChatColor.GOLD + "========== Warn! =========");
+                target.sendMessage(ChatColor.AQUA + "" + toxic);
+                target.sendMessage(ChatColor.GREEN + "Warned by: " + p.getName());
+                target.sendMessage(ChatColor.GOLD + "===========================");
             }
 
         }

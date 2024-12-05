@@ -51,7 +51,7 @@ public class PlayerMenuUtils {
 
         ItemStack msg = new ItemStack(Material.ANVIL, 1);
         ItemMeta mmeta = msg.getItemMeta();
-        mmeta.setDisplayName(ChatColor.AQUA + "msg " + player.getName());
+        mmeta.setDisplayName(ChatColor.AQUA + "Warn " + player.getName());
         mmeta.setLore(lore);
         msg.setItemMeta(mmeta);
         menu.setItem(4, msg);

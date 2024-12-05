@@ -32,7 +32,6 @@ BossBar:
   # message on bossbar
   message: "You Are Playing On YourServer.com"
 
-
 #----------
 support:
   discord: "https://example.com/discord"
