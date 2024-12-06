@@ -2,6 +2,7 @@ package me.parsa.menulobby;
 
 
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import me.parsa.menulobby.Commands.*;
 import me.parsa.menulobby.Events.*;
 import me.parsa.menulobby.Events.NoBlock.NoAnvilOpen;
@@ -255,6 +256,8 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         //ds
         String msg = config.getString("chat.message");
         boolean isE_chat = config.getBoolean("chat.enabled");
+
+        String server_name = getConfig().getString("server-name");
         //-----------
         getCommand("mparties").setExecutor(new mparties(this));
         getServer().getPluginManager().registerEvents(new ChatEvent(msg, isE_chat), this);
@@ -271,7 +274,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getServer().getPluginManager().registerEvents(new SettingsInventoryListener(this), this);
         getServer().getPluginManager().registerEvents(new KickInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new BanInventoryListener(), this);
-        getServer().getPluginManager().registerEvents(new OnPlayerJoin(this, IDK, server_ip, score_title, is_achievements, is_score, is_title, bedwars_title, webhook_url, is_webhook, this), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerJoin(this, IDK, server_ip, score_title, is_achievements, is_score, is_title, bedwars_title, webhook_url, is_webhook, this, server_name, store, website, discord), this);
         getServer().getPluginManager().registerEvents(new NoHunger(this), this);
         getServer().getPluginManager().registerEvents(new NoBlockDrop(this), this);
         getServer().getPluginManager().registerEvents(new NoHit(this), this);
@@ -327,30 +330,17 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         Objective objective = scoreboard.registerNewObjective( ChatColor.YELLOW + score_title, "dummy");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR); // Display on the side
 
-        // Add scores (lines)
+        //--------
+        // level display
+
+
+        // -------
+
+
+
         objective.getScore(ChatColor.YELLOW + "  Welcome to the Lobby! ").setScore(10);// Higher score is displayed on top
         objective.getScore(" ").setScore(6);
         objective.getScore(ChatColor.AQUA + "  Online Players:  " + Bukkit.getOnlinePlayers().size()).setScore(9);
-//        if (getServer().getPluginManager().getPlugin("Parties") != null) {
-//            PartiesAPI api = Parties.getApi();
-//            String party_description = null;
-//            String party_leader = null
-//            @NotNull Set<PartyPlayer> party_members = null;
-//            PartyPlayer player1 = api.getPartyPlayer(player.getUniqueId());
-//            if (player1.isInParty()) {
-//                Party party = api.getParty(player1.getPartyId());
-//                if (party != null) {
-//                    party_members = party.getOnlineMembers();
-//
-//                    objective.getScore(ChatColor.DARK_PURPLE + "Party:").setScore(2); // Party label
-//                    objective.getScore(ChatColor.LIGHT_PURPLE + "  Members: " + ChatColor.AQUA + party_members).setScore(1); // Members count
-//                    objective.getScore(ChatColor.LIGHT_PURPLE + "  Leader: " + ChatColor.GOLD + "PlayerName").setScore(0); // Leader name
-//                    objective.getScore(" ").setScore(-1);
-//                }
-//            }
-//
-//        }
-
         objective.getScore(" ").setScore(8);
         objective.getScore(ChatColor.GREEN + "  Available Games:  ").setScore(7);
         objective.getScore(" ").setScore(6);

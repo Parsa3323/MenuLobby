@@ -32,15 +32,15 @@ public class SupportInventoryListener implements Listener {
 
             if (e.getCurrentItem().getType() == Material.CARROT_ITEM) {
                 p.playSound(p.getLocation(), Sound.NOTE_PLING, 1 , 1);
-                p.sendMessage(ChatColor.AQUA + discord);
+                p.sendMessage(ChatColor.GREEN  + "§lDiscord " + ChatColor.DARK_GRAY + " » " + ChatColor.YELLOW + discord);
 
             } else if (e.getCurrentItem().getType() == Material.SKULL_ITEM) {
                 p.playSound(p.getLocation(), Sound.NOTE_PLING, 1 , 1);
-                p.sendMessage(ChatColor.AQUA + website);
+                p.sendMessage(ChatColor.GREEN  + "§lWebsite " + ChatColor.DARK_GRAY + " » " + ChatColor.YELLOW + website);
 
             } else if (e.getCurrentItem().getType() == Material.FLOWER_POT_ITEM) {
                 p.playSound(p.getLocation(), Sound.NOTE_PLING, 1 , 1);
-                p.sendMessage(ChatColor.AQUA + store);
+                p.sendMessage(ChatColor.GREEN  + "§lStore " + ChatColor.DARK_GRAY + " » " + ChatColor.YELLOW + store);
 
             }
 

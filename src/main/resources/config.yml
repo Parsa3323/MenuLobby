@@ -8,8 +8,10 @@
 #
 
 #  Welcome message that is welcome %playername%
-Welcome-Messages: false
+Welcome-Messages: true
 Welcome-Titles: true
+
+server-name: "MenuLobby"
 
 # ScoreBoard
 ScoreBoard:

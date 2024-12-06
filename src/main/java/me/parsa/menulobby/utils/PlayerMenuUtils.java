@@ -56,8 +56,8 @@ public class PlayerMenuUtils {
         msg.setItemMeta(mmeta);
         menu.setItem(4, msg);
 
-        if (player.hasPermission("menulobby.admin")) {
-            player.playSound(player.getLocation(), Sound.NOTE_PLING, 1 , 1);
+        if (main.hasPermission("menulobby.admin")) {
+            main.playSound(player.getLocation(), Sound.NOTE_PLING, 1 , 1);
             main.openInventory(menu);
         } else {
             player.sendMessage(ChatColor.RED + "You don't have permission");

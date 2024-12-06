@@ -64,6 +64,8 @@ commands:
   mfly:
     description: "Just Turn On fly"
     usage: /<command>
+    aliases:
+      - fly
   mmembers:
     description: Open a gui
     usage: /<command>

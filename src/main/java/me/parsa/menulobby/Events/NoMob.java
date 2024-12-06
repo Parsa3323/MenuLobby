@@ -1,5 +1,7 @@
 package me.parsa.menulobby.Events;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -9,6 +11,10 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.plugin.Plugin;
 
 public class NoMob implements Listener {
+
+    private Location spawnLocation = Bukkit.getServer().getWorlds().get(0).getSpawnLocation();
+
+    private World spawn_world = spawnLocation.getWorld();
 
     private final World targetWorld;
 
@@ -20,7 +26,7 @@ public class NoMob implements Listener {
     public void onMobSpawn(CreatureSpawnEvent event) {
         // Check if the entity is in the target world
         Entity entity = event.getEntity();
-        if (entity.getWorld().equals(targetWorld)) {
+        if (entity.getWorld().equals(spawn_world)) {
             // Cancel the spawn if the entity is not a player or NPC
             if (!(entity instanceof Player) && !isNPC(entity)) {
                 event.setCancelled(true);

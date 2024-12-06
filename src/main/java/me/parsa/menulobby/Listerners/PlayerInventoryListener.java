@@ -89,6 +89,8 @@ public class PlayerInventoryListener implements Listener {
                 target.sendMessage(ChatColor.AQUA + "" + toxic);
                 target.sendMessage(ChatColor.GREEN + "Warned by: " + p.getName());
                 target.sendMessage(ChatColor.GOLD + "===========================");
+            } else if (e.getCurrentItem().getType() == Material.BARRIER) {
+                p.closeInventory();
             }
 
         }

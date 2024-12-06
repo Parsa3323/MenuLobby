@@ -1,6 +1,8 @@
 package me.parsa.menulobby.Events;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -17,6 +19,10 @@ public class NoDamage implements Listener {
 
     private final World targetWorld;
 
+    private Location spawnLocation = Bukkit.getServer().getWorlds().get(0).getSpawnLocation();
+
+    private World spawn_world = spawnLocation.getWorld();
+
     public NoDamage(Plugin pl, String No_perm, boolean is_Enabled) {
         this.no_perm = No_perm;
         this.isEnabled = is_Enabled;
@@ -25,7 +31,7 @@ public class NoDamage implements Listener {
 
     @EventHandler
     public void onPlayerDamagedSomeone(EntityDamageByEntityEvent e) {
-        if (e.getEntity().getWorld().equals(targetWorld)) {
+        if (e.getEntity().getWorld().equals(spawn_world)) {
             if (isEnabled) {
                 Entity entity = e.getEntity();
                 if (entity instanceof Player) {

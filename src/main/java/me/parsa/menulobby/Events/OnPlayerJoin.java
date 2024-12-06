@@ -3,6 +3,7 @@ package me.parsa.menulobby.Events;
 import me.parsa.menulobby.Discord.WebHookSender;
 import me.parsa.menulobby.MenuLobby;
 import me.parsa.menulobby.utils.OnJoinAdminUtils;
+import me.parsa.menulobby.utils.TabListUtils;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -42,11 +43,20 @@ public class OnPlayerJoin implements Listener {
 
     private JavaPlugin plugin;
 
-    public OnPlayerJoin(MenuLobby pl, boolean msgE, String server_ip, String score_title, boolean is_achievements, boolean is_score, boolean is_title, String bedwars, String webhook_url, boolean is_enabled_web, JavaPlugin plugin) {
+    private String store;
+    private String discord;
+    private String website;
+    private String server_name;
+
+    public OnPlayerJoin(MenuLobby pl, boolean msgE, String server_ip, String score_title, boolean is_achievements, boolean is_score, boolean is_title, String bedwars, String webhook_url, boolean is_enabled_web, JavaPlugin plugin, String server_name, String store, String website, String discord) {
         this.msgE = msgE;
         this.pl = pl;
         this.bedwars = bedwars;
         this.is_title = is_title;
+        this.store = store;
+        this.discord = discord;
+        this.server_name = server_name;
+        this.website = website;
         this.is_score = is_score;
         this.is_achievements = is_achievements;
         this.score_title = score_title;
@@ -69,14 +79,25 @@ public class OnPlayerJoin implements Listener {
         Player p = e.getPlayer();
 
 
+//        TabListUtils tabUtils = new TabListUtils();
+//        tabUtils.createScoreboard(p);
+
         if (is_score) {
+
             pl.createScoreboard(p, server_ip, score_title, bedwars);
         }
         if (msgE) {
-            e.setJoinMessage(ChatColor.GREEN + "Welcome " + p.getName());
-        } else {
-            e.setJoinMessage(null);
+            p.sendMessage(ChatColor.GRAY + "-----------------------------------");
+            p.sendMessage(" ");
+            p.sendMessage("Welcome to " + server_name);
+            p.sendMessage(" ");
+            p.sendMessage(ChatColor.GRAY + "■ " + ChatColor.WHITE + "Discord: " + ChatColor.DARK_GREEN + discord);
+            p.sendMessage(ChatColor.GRAY + "■ " + ChatColor.WHITE + "Website: " + ChatColor.DARK_GREEN + website);
+            p.sendMessage(ChatColor.GRAY + "■ " + ChatColor.WHITE + "Store: " + ChatColor.DARK_GREEN + store);
+            p.sendMessage(" ");
+            p.sendMessage(ChatColor.GRAY + "-----------------------------------");
         }
+        e.setJoinMessage(null);
         if (is_achievements) {
             if (!p.hasPlayedBefore()) {
                 p.playSound(p.getLocation(), Sound.LEVEL_UP, 1 , 1);
@@ -86,19 +107,21 @@ public class OnPlayerJoin implements Listener {
                 p.sendMessage(ChatColor.GOLD + "===========================");
             }
         }
-        new BukkitRunnable() {
-            @Override
-            public void run() {
+        if (p.hasPermission("menulobby.admin")) {
+            new BukkitRunnable() {
+                @Override
+                public void run() {
 
-                new BukkitRunnable() {
-                    @Override
-                    public void run() {
-                        OnJoinAdminUtils.giveAdmin(p);
-                    }
-                }.runTaskLater(plugin, 40L);
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            OnJoinAdminUtils.giveAdmin(p);
+                        }
+                    }.runTaskLater(plugin, 40L);
 
-            }
-        }.runTaskLater(plugin, 20L);
+                }
+            }.runTaskLater(plugin, 20L);
+        }
         if (is_title) {
             p.sendTitle(ChatColor.GREEN + "Welcome" + " " + p.getName(), ChatColor.AQUA + "Enjoy Your Time");
         }
