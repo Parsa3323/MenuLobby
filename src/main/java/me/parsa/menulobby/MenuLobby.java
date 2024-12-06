@@ -253,6 +253,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getCommand("msupport").setExecutor(new msupport());
         getCommand("mmsg").setExecutor(new mmsg());
         getCommand("mping").setExecutor(new mping());
+        getCommand("mstaffchat").setExecutor(new mstaffchat());
         getCommand("mtp").setExecutor(new mtp());
         //ds
         String msg = config.getString("chat.message");
@@ -261,7 +262,8 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         String server_name = getConfig().getString("server-name");
         //-----------
         getCommand("mparties").setExecutor(new mparties(this));
-        getServer().getPluginManager().registerEvents(new ChatEvent(msg, isE_chat), this);
+        mstaffchat staffChatCommand = new mstaffchat();
+        getServer().getPluginManager().registerEvents(new ChatEvent(msg, isE_chat, staffChatCommand), this);
         getServer().getPluginManager().registerEvents(new ChatPapi(), this);
         getServer().getPluginManager().registerEvents(new TagListener(this), this);
         getServer().getPluginManager().registerEvents(new ShiftInventoryListener(), this);

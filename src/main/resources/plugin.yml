@@ -3,6 +3,9 @@ version: '${project.version}'
 main: me.parsa.menulobby.MenuLobby
 softdepend: [NoBlocks, BedWars1058, Parties, PlaceholderAPI]
 commands:
+  mstaffchat:
+    aliases:
+      - staffchat
   mping:
     description: Get users ping
     aliases:

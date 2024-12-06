@@ -1,6 +1,7 @@
 package me.parsa.menulobby.Events;
 
 import me.clip.placeholderapi.PlaceholderAPI;
+import me.parsa.menulobby.Commands.mstaffchat;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,13 +14,20 @@ public class ChatEvent implements Listener {
 
     boolean isEnabled;
 
-    public ChatEvent(String on_join, boolean isEnabled) {
+    private mstaffchat mstaffchat;
+
+    public ChatEvent(String on_join, boolean isEnabled, mstaffchat mstaffchat) {
         this.on_join = on_join;
+        this.mstaffchat = mstaffchat;
         this.isEnabled = isEnabled;
     }
 
     @EventHandler
     public void onMsg(AsyncPlayerChatEvent e) {
+        if (mstaffchat.isStaffChatEnabled(e.getPlayer())) {
+            e.setCancelled(true);
+            mstaffchat.sendToStaffChat(e.getPlayer(), e.getMessage());
+        }
         if (isEnabled) {
             if (e.isCancelled()) {
                 return;
