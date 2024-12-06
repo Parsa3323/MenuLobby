@@ -8,6 +8,7 @@ import me.parsa.menulobby.Events.NoBlock.NoAnvilOpen;
 import me.parsa.menulobby.Events.NoBlock.NoBlockBreak;
 import me.parsa.menulobby.Events.NoBlock.NoChestOpen;
 import me.parsa.menulobby.Listerners.*;
+import me.parsa.menulobby.Placeholders.ChatPapi;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -78,6 +79,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getServer().getConsoleSender().sendMessage(ChatColor.GRAY + "Running on Bukkit - CraftBukkit");
         getServer().getConsoleSender().sendMessage(""); // Blank line for spacing
 
+
         if (getServer().getPluginManager().getPlugin("Parties") != null) {
             getServer().getConsoleSender().sendMessage(ChatColor.GOLD + "Menu Lobby ->" + ChatColor.AQUA + " Found parties plugin initializing");
         } else if (getServer().getPluginManager().getPlugin("Parties") == null) {
@@ -91,6 +93,19 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
 
             getServer().getConsoleSender().sendMessage(ChatColor.GOLD + "Menu Lobby ->" + ChatColor.AQUA + " No need to download the NoBlocks plugin anymore! (you can delete it if you want)");
 
+        } if (getServer().getPluginManager().getPlugin("PlaceholderAPI") == null) {
+            getServer().getConsoleSender().sendMessage(ChatColor.RED + "___________                               ");
+            getServer().getConsoleSender().sendMessage(ChatColor.RED + "\\_   _____/_______ _______   ____ _______ ");
+            getServer().getConsoleSender().sendMessage(ChatColor.RED + " |    __)_ \\_  __ \\\\_  __ \\ /  _ \\\\_  __ \\");
+            getServer().getConsoleSender().sendMessage(ChatColor.RED + " |        \\ |  | \\/ |  | \\/(  <_> )|  | \\/");
+            getServer().getConsoleSender().sendMessage(ChatColor.RED + "/_______  / |__|    |__|    \\____/ |__|   ");
+            getServer().getConsoleSender().sendMessage(ChatColor.RED + "        \\/                                ");
+            getServer().getConsoleSender().sendMessage(ChatColor.GOLD + "Menu Lobby -> [Error] PlaceholderAPI not found disabling plugin");
+            Bukkit.getPluginManager().disablePlugin(this);
+
+            return;
+        } else {
+            new ChatPapi().register();
         }
 
         // Configs for ScoreBoard
@@ -231,7 +246,12 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getCommand("mmsg").setExecutor(new mmsg());
         getCommand("mtp").setExecutor(new mtp());
         //ds
+        String msg = config.getString("chat.message");
+        boolean isE_chat = config.getBoolean("chat.enabled");
+        //-----------
         getCommand("mparties").setExecutor(new mparties(this));
+        getServer().getPluginManager().registerEvents(new ChatEvent(msg, isE_chat), this);
+        getServer().getPluginManager().registerEvents(new ChatPapi(), this);
         getServer().getPluginManager().registerEvents(new TagListener(this), this);
         getServer().getPluginManager().registerEvents(new ShiftInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerPreJoin(webhook_url, is_webhook), this);

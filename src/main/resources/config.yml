@@ -32,6 +32,11 @@ BossBar:
   # message on bossbar
   message: "You Are Playing On YourServer.com"
 
+chat:
+  enabled: true
+  # you can use placeholder api btw for bedwars level and more
+  message: "§l§2%MenuLobby_username%§r §8» %MenuLobby_message%"
+
 #----------
 support:
   discord: "https://example.com/discord"

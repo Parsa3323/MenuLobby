@@ -1,7 +1,7 @@
 name: MenuLobby
 version: '${project.version}'
 main: me.parsa.menulobby.MenuLobby
-softdepend: [NoBlocks, BedWars1058, Parties]
+softdepend: [NoBlocks, BedWars1058, Parties, PlaceholderAPI]
 commands:
   mmsg:
     description: Msg a player
