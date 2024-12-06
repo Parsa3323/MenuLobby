@@ -18,9 +18,11 @@ public class ShiftInventoryListener implements Listener {
         Player player = event.getPlayer();
 
         if (player.isSneaking() && event.getRightClicked() instanceof Player) {
+            if (player.hasPermission("menulobby.admin")) {
+                Player targetPlayer = (Player) event.getRightClicked();
+                PlayerMenuUtils.openPlayer(targetPlayer, player);
+            }
             // Check if the player is right-clicking another player
-            Player targetPlayer = (Player) event.getRightClicked();
-            PlayerMenuUtils.openPlayer(targetPlayer, player);
         }
     }
 

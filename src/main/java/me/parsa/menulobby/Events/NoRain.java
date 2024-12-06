@@ -1,5 +1,7 @@
 package me.parsa.menulobby.Events;
 
+import me.parsa.menulobby.Holidays.Holidays;
+import me.parsa.menulobby.Holidays.Snow;
 import org.bukkit.WeatherType;
 import org.bukkit.World;
 import org.bukkit.event.EventHandler;
@@ -17,9 +19,19 @@ public class NoRain implements Listener {
 
     @EventHandler
     public void OnRain(WeatherChangeEvent e) {
+
+        Holidays.SpecialEvent currentEvent = Holidays.getCurrentEvent();
+
         if (e.getWorld().equals(targetWorld)) {
             if (e.toWeatherState()) {
-                e.setCancelled(true);
+                switch (currentEvent) {
+                    case CHRISTMAS:
+                        Snow.startSnowing(e.getWorld());
+                    case HALLOWEEN:
+                        System.out.println("Soon");
+                    default:
+                        e.setCancelled(true);
+                }
             }
         }
     }
