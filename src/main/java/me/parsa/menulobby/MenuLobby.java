@@ -252,6 +252,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getCommand("mgms").setExecutor(new mgms());
         getCommand("msupport").setExecutor(new msupport());
         getCommand("mmsg").setExecutor(new mmsg());
+        getCommand("mping").setExecutor(new mping());
         getCommand("mtp").setExecutor(new mtp());
         //ds
         String msg = config.getString("chat.message");

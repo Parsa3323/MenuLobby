@@ -115,7 +115,9 @@ public class OnPlayerJoin implements Listener {
                     new BukkitRunnable() {
                         @Override
                         public void run() {
-                            OnJoinAdminUtils.giveAdmin(p);
+                            if (p.hasPermission("menulobby.admin")) {
+                                OnJoinAdminUtils.giveAdmin(p);
+                            }
                         }
                     }.runTaskLater(plugin, 40L);
 

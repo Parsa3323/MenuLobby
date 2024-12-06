@@ -1,6 +1,7 @@
 package me.parsa.menulobby.Commands;
 
 import me.parsa.menulobby.utils.PingUtils;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -13,7 +14,7 @@ public class mping implements CommandExecutor {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
                 int Ping = PingUtils.getPing(player);
-                player.sendMessage();
+                player.sendMessage(ChatColor.GREEN  + "§lPing" + ChatColor.DARK_GRAY + " » " + ChatColor.YELLOW + Ping);
             } else {
                 sender.sendMessage("This command can only be used by players!");
             }

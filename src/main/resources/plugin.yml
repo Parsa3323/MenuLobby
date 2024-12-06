@@ -3,6 +3,10 @@ version: '${project.version}'
 main: me.parsa.menulobby.MenuLobby
 softdepend: [NoBlocks, BedWars1058, Parties, PlaceholderAPI]
 commands:
+  mping:
+    description: Get users ping
+    aliases:
+      - ping
   mmsg:
     description: Msg a player
     aliases:
