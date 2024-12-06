@@ -21,6 +21,9 @@ public class ChatEvent implements Listener {
     @EventHandler
     public void onMsg(AsyncPlayerChatEvent e) {
         if (isEnabled) {
+            if (e.isCancelled()) {
+                return;
+            }
             String msg = e.getMessage();
             Player p = e.getPlayer();
 

@@ -27,6 +27,7 @@ import org.bukkit.scoreboard.ScoreboardManager;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 //ds
 
@@ -225,6 +226,12 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getServer().getPluginManager().registerEvents(new NoAnvilOpen(this, is_no_anvil, no_perm_no_anvil), this);
         getServer().getPluginManager().registerEvents(new NoBlockBreak(this, no_perm_no_blocks, is_no_block, is_in_one_word_no_blocks), this);
         //------------------------------------------/Config Manager For NoBlockBreak
+
+
+//        getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "THE CONFIG TEST" + getConfig().getString("webhooks.url"));
+//        config for blocked words
+        List<String> blocked_custom = config.getStringList("blocked-messages");
+        getServer().getPluginManager().registerEvents(new NoBadWord(blocked_custom), this);
 
         getServer().getPluginManager().registerEvents(new NoMob(this), this);
         getServer().getPluginManager().registerEvents(new NoRain(this), this);

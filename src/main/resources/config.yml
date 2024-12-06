@@ -32,6 +32,10 @@ BossBar:
   # message on bossbar
   message: "You Are Playing On YourServer.com"
 
+# Custom blocked messages
+blocked-messages:
+  - "bad-server"
+
 chat:
   enabled: true
   # you can use placeholder api btw for bedwars level and more
