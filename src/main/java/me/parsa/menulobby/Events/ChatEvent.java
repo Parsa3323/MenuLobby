@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+
 public class ChatEvent implements Listener {
 
     private String on_join;
@@ -24,10 +25,9 @@ public class ChatEvent implements Listener {
 
     @EventHandler
     public void onMsg(AsyncPlayerChatEvent e) {
-        if (mstaffchat.isStaffChatEnabled(e.getPlayer())) {
-            e.setCancelled(true);
-            mstaffchat.sendToStaffChat(e.getPlayer(), e.getMessage());
-        }
+        Player player = e.getPlayer();
+
+
         if (isEnabled) {
             if (e.isCancelled()) {
                 return;

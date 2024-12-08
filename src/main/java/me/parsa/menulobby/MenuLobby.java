@@ -253,7 +253,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getCommand("msupport").setExecutor(new msupport());
         getCommand("mmsg").setExecutor(new mmsg());
         getCommand("mping").setExecutor(new mping());
-        getCommand("mstaffchat").setExecutor(new mstaffchat());
+//        getCommand("mstaffchat").setExecutor(new mstaffchat(this, this));
         getCommand("mtp").setExecutor(new mtp());
         //ds
         String msg = config.getString("chat.message");
@@ -262,7 +262,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         String server_name = getConfig().getString("server-name");
         //-----------
         getCommand("mparties").setExecutor(new mparties(this));
-        mstaffchat staffChatCommand = new mstaffchat();
+        mstaffchat staffChatCommand = new mstaffchat(this, this);
         getServer().getPluginManager().registerEvents(new ChatEvent(msg, isE_chat, staffChatCommand), this);
         getServer().getPluginManager().registerEvents(new ChatPapi(), this);
         getServer().getPluginManager().registerEvents(new TagListener(this), this);
@@ -295,6 +295,13 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
             this.adventure.close();
             this.adventure = null;
         }
+        getServer().getConsoleSender().sendMessage(ChatColor.AQUA + "        .__   ");
+        getServer().getConsoleSender().sendMessage(ChatColor.AQUA + "  _____ |  |   ");
+        getServer().getConsoleSender().sendMessage(ChatColor.AQUA + " /     \\|  |   ");
+        getServer().getConsoleSender().sendMessage(ChatColor.AQUA + "|  Y Y  \\  |__ ");
+        getServer().getConsoleSender().sendMessage(ChatColor.AQUA + "|__|_|  /____/ ");
+        getServer().getConsoleSender().sendMessage(ChatColor.AQUA + "      \\/      (ʘ‿ʘ)╯ ");
+        getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "Disabling MenuLobby v" + getDescription().getVersion());
         System.out.println("MenuLobby Disabled");
     }
     public void showHelp(CommandSender sender) {
