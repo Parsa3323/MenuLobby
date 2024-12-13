@@ -32,7 +32,6 @@ public class mFly implements CommandExecutor {
                             player.sendMessage(ChatColor.GREEN + "You have successfully enabled flight mod");
                             
                         }
-    
                     } else {
                         player.sendMessage(ChatColor.RED + "Sorry you don't have permission");
                     }

@@ -20,6 +20,7 @@ public class mmsg implements CommandExecutor {
                     String message = args[1];
                     Player target = Bukkit.getPlayer(name);
                     if (!player.equals(target)) {
+                        player.getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + " " + player.getName() + " ➤ " + target.getName() + ChatColor.DARK_GRAY + ": " + message);
                         target.sendMessage(ChatColor.YELLOW + " " + player.getName() + " ➤ " + target.getName() + ChatColor.DARK_GRAY + ": " + message);
                         target.playSound(player.getLocation(), Sound.ORB_PICKUP, 1 , 1);
                         player.sendMessage(ChatColor.YELLOW + " " + player.getName() + " ➤ " + target.getName() + ChatColor.DARK_GRAY + ": " + message);
