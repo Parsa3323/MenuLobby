@@ -3,6 +3,10 @@ version: '${project.version}'
 main: me.parsa.menulobby.MenuLobby
 softdepend: [NoBlocks, BedWars1058, Parties, PlaceholderAPI]
 commands:
+  mbroadcast:
+    usage: /mbroadcast <Message>
+    aliases:
+      - broadcast
   mstaffchat:
     aliases:
       - staffchat
