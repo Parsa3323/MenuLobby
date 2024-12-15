@@ -20,8 +20,6 @@ commands:
       - msg
   mplayer:
     description: Manage your users
-  mtest2:
-    description: Another test cmd
   mparties:
     description: TEST
   mtp:
@@ -66,12 +64,6 @@ commands:
   mreload:
     description: Reloads the plugin
     usage: /mreload
-  mtest:
-    description: TEST
-    usage: /<command>
-  testkill:
-    description: "testcmd"
-    usage: /<command>
   mfly:
     description: "Just Turn On fly"
     usage: /<command>
