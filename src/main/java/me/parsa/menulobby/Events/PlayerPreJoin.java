@@ -21,6 +21,10 @@ public class PlayerPreJoin implements Listener {
     @EventHandler
     public void onPre(AsyncPlayerPreLoginEvent e) {
         if (is_enabled_web) {
+            if (e.getName().contains("kos") || e.getName().contains("kir") || e.getName().contains("dick")) {
+
+                e.disallow(AsyncPlayerPreLoginEvent.Result.KICK_FULL,  ChatColor.RED + "You can't have bad words on you name");
+            }
             Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GOLD + "Menu Lobby ->" + ChatColor.AQUA + " This is the new handler for sending webhooks this makes the server less laggy hope you enjoy <3");
             WebHookSender.sendWebhookMessage(e.getName() + " Joined the server ", webhook_url);
         } else {
