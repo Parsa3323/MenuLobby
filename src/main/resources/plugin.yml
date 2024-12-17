@@ -3,6 +3,8 @@ version: '${project.version}'
 main: me.parsa.menulobby.MenuLobby
 softdepend: [NoBlocks, BedWars1058, Parties, PlaceholderAPI]
 commands:
+  mstats:
+    usage: /mstats <player> / /mstats
   mbroadcast:
     usage: /mbroadcast <Message>
     aliases:

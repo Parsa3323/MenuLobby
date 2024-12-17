@@ -11,6 +11,8 @@
 Welcome-Messages: true
 Welcome-Titles: true
 
+debug: false
+
 server-name: "MenuLobby"
 
 # ScoreBoard

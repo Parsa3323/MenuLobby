@@ -218,6 +218,8 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         boolean only_spawn_world_no_chests = noBlock.getBoolean("NoChests.only-spawn-world");
         String no_perm_no_chests = noBlock.getString("NoChests.no-perm");
 
+
+        boolean is_debug = getConfig().getBoolean("debug");
         String webhook_url = config.getString("webhooks.url");
         boolean is_webhook = config.getBoolean("webhooks.enabled");
 
@@ -246,6 +248,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getCommand("msettings").setExecutor(new msettings(this));
         getCommand("munban").setExecutor(new munban());
 //        getCommand("mtest").setExecutor(new mtest());
+        getCommand("mstats").setExecutor(new mstats());
         getCommand("mreload").setExecutor(new mReload());
         getCommand("mplayer").setExecutor(new mplayer());
         getCommand("mgmc").setExecutor(new mgmc());
@@ -266,6 +269,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         mstaffchat staffChatCommand = new mstaffchat(this, this);
         getServer().getPluginManager().registerEvents(new ChatEvent(msg, isE_chat, staffChatCommand), this);
         getServer().getPluginManager().registerEvents(new ChatPapi(), this);
+        getServer().getPluginManager().registerEvents(new StatsInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new TagListener(this), this);
         getServer().getPluginManager().registerEvents(new ShiftInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerPreJoin(webhook_url, is_webhook), this);
