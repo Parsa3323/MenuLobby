@@ -43,7 +43,7 @@ blocked-messages:
 chat:
   enabled: true
   # you can use placeholder api btw for bedwars level and more
-  message: "§l§2%MenuLobby_username%§r §8» %MenuLobby_message%"
+  message: "§l§2%MenuLobby_username%§r §7» %MenuLobby_message%"
 
 #----------
 support:

@@ -54,6 +54,9 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
 
         this.adventure = BukkitAudiences.create(this);
 
+        if (getServer().getPluginManager().getPlugin("bedwars1058") != null) {
+            getConfig().set("chat.message", "§l§7%bw1058_player_level%| §2%MenuLobby_username%§r §7» %MenuLobby_message%");
+        }
 
 
         File configFile = new File(getDataFolder(), "config.yml");
