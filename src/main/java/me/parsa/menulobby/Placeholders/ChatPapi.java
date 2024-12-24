@@ -14,7 +14,6 @@ import java.util.UUID;
 
 public class ChatPapi extends PlaceholderExpansion implements Listener {
 
-
     private final Map<UUID, String> playerMessages = new HashMap<>();
 
     @Override

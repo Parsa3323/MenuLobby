@@ -10,6 +10,7 @@ import me.parsa.menulobby.Events.NoBlock.NoBlockBreak;
 import me.parsa.menulobby.Events.NoBlock.NoChestOpen;
 import me.parsa.menulobby.Listerners.*;
 import me.parsa.menulobby.Placeholders.ChatPapi;
+import me.parsa.menulobby.utils.UpdateChecker;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -84,7 +85,10 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getServer().getConsoleSender().sendMessage(ChatColor.GRAY + "Running on Bukkit - CraftBukkit");
         getServer().getConsoleSender().sendMessage(""); // Blank line for spacing
 
-
+        System.out.println("SDS");
+        int res_id = 121022;
+        new UpdateChecker(this, res_id).checkForUpdates();
+        System.out.println("SD23S");
         if (getServer().getPluginManager().getPlugin("Parties") != null) {
             getServer().getConsoleSender().sendMessage(ChatColor.GOLD + "Menu Lobby ->" + ChatColor.AQUA + " Found parties plugin initializing");
         } else if (getServer().getPluginManager().getPlugin("Parties") == null) {
