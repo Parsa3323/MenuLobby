@@ -272,6 +272,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         mstaffchat staffChatCommand = new mstaffchat(this, this);
         getServer().getPluginManager().registerEvents(new ChatEvent(msg, isE_chat, staffChatCommand), this);
         getServer().getPluginManager().registerEvents(new ChatPapi(), this);
+        getServer().getPluginManager().registerEvents(new CoolDown(), this);
         getServer().getPluginManager().registerEvents(new StatsInventoryListener(), this);
         getServer().getPluginManager().registerEvents(new TagListener(this), this);
         getServer().getPluginManager().registerEvents(new ShiftInventoryListener(), this);
