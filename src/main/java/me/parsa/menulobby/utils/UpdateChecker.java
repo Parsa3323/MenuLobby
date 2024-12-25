@@ -48,18 +48,28 @@ public class UpdateChecker {
                 // Compare versions
                 String currentVersion = plugin.getDescription().getVersion();
                 if (!currentVersion.equalsIgnoreCase(latestVersion)) {
-                    plugin.getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "[UpdateChecker] " +
+                    plugin.getServer().getConsoleSender().sendMessage(ChatColor.YELLOW +
+                            "\n _   _           _       _          ___             _ _       _     _      " +
+                            "\n| | | |         | |     | |        / _ \\           (_) |     | |   | |     " +
+                            "\n| | | |_ __   __| | __ _| |_ ___  / /_\\ \\_   ____ _ _| | __ _| |__ | | ___ " +
+                            "\n| | | | '_ \\ / _` |/ _` | __/ _ \\ |  _  \\ \\ / / _` | | |/ _` | '_ \\| |/ _ \\" +
+                            "\n| |_| | |_) | (_| | (_| | ||  __/ | | | |\\ V / (_| | | | (_| | |_) | |  __/" +
+                            "\n \\___/| .__/ \\__,_|\\__,_|\\__\\___| \\_| |_/ \\_/ \\__,_|_|_|\\__,_|_.__/|_|\\___|" +
+                            "\n      | |                                                                  " +
+                            "\n      |_|                                                                  ");
+
+                    plugin.getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "[MenuLobbyUpdates] " +
                             ChatColor.GREEN + "A new version of the plugin is available: " +
                             ChatColor.AQUA + latestVersion);
-                    plugin.getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "[UpdateChecker] " +
+                    plugin.getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "[MenuLobbyUpdates] " +
                             ChatColor.BLUE + "Download it at: " +
                             ChatColor.UNDERLINE + "https://www.spigotmc.org/resources/" + resourceId);
                 } else {
-                    plugin.getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "[UpdateChecker] " +
+                    plugin.getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "[MenuLobbyUpdates] " +
                             ChatColor.GREEN + "The plugin is up to date!");
                 }
             } catch (Exception e) {
-                plugin.getServer().getConsoleSender().sendMessage(ChatColor.RED + "[UpdateChecker] " +
+                plugin.getServer().getConsoleSender().sendMessage(ChatColor.RED + "[MenuLobbyUpdates] " +
                         ChatColor.DARK_RED + "Could not check for updates: " + e.getMessage());
             }
         });
