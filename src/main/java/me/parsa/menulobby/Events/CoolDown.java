@@ -28,10 +28,12 @@ public class CoolDown implements Listener {
             long timeElapsed = (currentTime - lastused) / 1000;
 
             if (timeElapsed < COOLDOWN_TIME) {
-                long timeRemaining = COOLDOWN_TIME - timeElapsed;
-                e.getPlayer().sendMessage(ChatColor.RED + "You must wait " + timeRemaining + " seconds before using another command.");
-                e.setCancelled(true);
-                return;
+                if (!e.getPlayer().hasPermission("menulobby.admin")) {
+                    long timeRemaining = COOLDOWN_TIME - timeElapsed;
+                    e.getPlayer().sendMessage(ChatColor.RED + "You must wait " + timeRemaining + " seconds before using another command.");
+                    e.setCancelled(true);
+                    return;
+                }
             }
         }
         cooldowns.put(playerUUID, currentTime);
