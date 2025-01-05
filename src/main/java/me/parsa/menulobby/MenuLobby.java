@@ -156,6 +156,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         String noDperm = messages.getString("messages.hits.no-perm");
 
         ConsoleCommandSender consoleCommandSender = Bukkit.getConsoleSender();
+        getServer().getPluginManager().registerEvents(new TestListener(), this);
         //----------------------------------------------------------------------------------------------------------------DISCORD
 //        File Discordyml = new File(getDataFolder(), "Discord/discord.yml");
 //
