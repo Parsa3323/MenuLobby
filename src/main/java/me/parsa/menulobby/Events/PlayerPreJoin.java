@@ -33,8 +33,9 @@ public class PlayerPreJoin implements Listener {
             UUID uuid = e.getUniqueId();
             Player player = Bukkit.getPlayer(uuid) ;
 
-            WebhookSendEvent events = new WebhookSendEvent(uuid);
+            WebhookSendEvent events = new WebhookSendEvent(uuid, e.getName());
             Bukkit.getServer().getPluginManager().callEvent(events);
+
             if (!events.isCancelled()) {
                 WebHookSender.sendWebhookMessage(e.getName() + " Joined the server ", webhook_url);
             }

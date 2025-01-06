@@ -5,30 +5,24 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-import java.util.UUID;
 
-public class WebhookSendEvent extends Event implements Cancellable {
+
+public class PlayerPanelOpenEvent extends Event implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
 
     private boolean cancelled;
 
-    UUID uuid;
+    Player target;
 
-    String name;
+    Player player;
 
-    public WebhookSendEvent(UUID uuid, String name) {
-        this.uuid = uuid;
-        this.name = name;
+
+    public PlayerPanelOpenEvent(Player target, Player player) {
+        this.player = player;
+        this.target = target;
     }
 
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public String getName() {
-        return name;
-    }
     public boolean isCancelled() {
         return cancelled;
     }
@@ -37,13 +31,21 @@ public class WebhookSendEvent extends Event implements Cancellable {
         cancelled = cancel;
     }
 
-    public HandlerList getHandlers(){
+    public HandlerList getHandlers() {
         return handlers;
     }
 
     public static HandlerList getHandlerList() {
         return handlers;
+
     }
 
+    public Player getTarget() {
+        return target;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
 
 }
