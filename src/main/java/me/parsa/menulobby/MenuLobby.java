@@ -1,8 +1,6 @@
 package me.parsa.menulobby;
 
 
-
-import me.clip.placeholderapi.PlaceholderAPI;
 import me.parsa.menulobby.Commands.*;
 import me.parsa.menulobby.Events.*;
 import me.parsa.menulobby.Events.NoBlock.NoAnvilOpen;
@@ -62,13 +60,13 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
 
         File configFile = new File(getDataFolder(), "config.yml");
 
-        // Check if the config file exists, if not, copy the default one from resources
+
         if (!configFile.exists()) {
-            saveResource("config.yml", false);  // 'false' means don't override if it already exists
+            saveResource("config.yml", false);
         }
 
 
-        // Now load the config
+
         FileConfiguration config = getConfig();
 
 
@@ -83,7 +81,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         getServer().getConsoleSender().sendMessage(ChatColor.AQUA + "      \\/       ");
         getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "MenuLobby v" + getDescription().getVersion());
         getServer().getConsoleSender().sendMessage(ChatColor.GRAY + "Running on Bukkit - CraftBukkit");
-        getServer().getConsoleSender().sendMessage(""); // Blank line for spacing
+        getServer().getConsoleSender().sendMessage("");
 
         System.out.println("SDS");
         int res_id = 121022;
@@ -117,7 +115,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
             new ChatPapi().register();
         }
 
-        // Configs for ScoreBoard
+
         boolean isE = config.getBoolean("ScoreBoard.enabled");
         String server_ip = config.getString("ScoreBoard.server-ip");
 
@@ -141,9 +139,9 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
 
         File file2 = new File(getDataFolder(), "messages.yml");
 
-        // Check if the config file exists, if not, copy the default one from resources
+
         if (!file2.exists()) {
-            saveResource("messages.yml", false);  // 'false' means don't override if it already exists
+            saveResource("messages.yml", false);
         }
 
         // Now load the config
@@ -196,12 +194,12 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
 
         File blockFile = new File(getDataFolder(), "NoBlockBreak/noblocks.yml");
 
-        // Check if the config file exists, if not, copy the default one from resources
+
         if (!blockFile.exists()) {
-            saveResource("NoBlockBreak/noblocks.yml", false);  // 'false' means don't override if it already exists
+            saveResource("NoBlockBreak/noblocks.yml", false);
         }
 
-        // Load the custom configuration
+
         FileConfiguration noBlock = YamlConfiguration.loadConfiguration(blockFile);
 
         // NoBlockss
@@ -321,16 +319,16 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
     public void showHelp(CommandSender sender) {
         sender.sendMessage(ChatColor.GOLD + "===== " + ChatColor.AQUA + "MenuLobby Commands" + ChatColor.GOLD + " =====");
 
-        // Get commands from plugin.yml
+
         Map<String, Map<String, Object>> commands = this.getDescription().getCommands();
 
-        // Iterate over each command and display its description and usage
+
         for (Map.Entry<String, Map<String, Object>> entry : commands.entrySet()) {
             String commandName = entry.getKey();
-            String description = (String) entry.getValue().get("description");  // Cast to String
-            String usage = (String) entry.getValue().get("usage");  // Cast to String
+            String description = (String) entry.getValue().get("description");
+            String usage = (String) entry.getValue().get("usage");
 
-            // Show the command with description and usage
+
             showCommand(sender, commandName, description, usage);
         }
 
@@ -340,14 +338,14 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
     public void showCommand(CommandSender sender, String command, String description, String usage) {
         sender.sendMessage(ChatColor.YELLOW + "/" + command + ChatColor.GRAY + " - " + description);
         sender.sendMessage(ChatColor.GRAY + "Usage: " + ChatColor.WHITE + usage);
-        sender.sendMessage(""); // Adding space between commands for readability
+        sender.sendMessage("");
     }
     public void createScoreboard(Player player, String server_ip, String score_title, String bedwars) {
-        // Get the Scoreboard Manager
+
         ScoreboardManager manager = Bukkit.getScoreboardManager();
         Scoreboard scoreboard = manager.getNewScoreboard();
 
-        // Create the Objective
+
         if (getServer().getPluginManager().getPlugin("bedwars1058") != null) {
                 score_title = bedwars;
         }
@@ -362,7 +360,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
 
 
 
-        objective.getScore(ChatColor.YELLOW + "  Welcome to the Lobby! ").setScore(10);// Higher score is displayed on top
+        objective.getScore(ChatColor.YELLOW + "  Welcome to the Lobby! ").setScore(10);
         objective.getScore(" ").setScore(6);
         objective.getScore(ChatColor.AQUA + "  Online Players:  " + Bukkit.getOnlinePlayers().size()).setScore(9);
         objective.getScore(" ").setScore(8);
@@ -374,7 +372,7 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         objective.getScore(" ").setScore(2);
         objective.getScore(ChatColor.GOLD + server_ip).setScore(1);
 
-        // Assign the scoreboard to the player
+
         player.setScoreboard(scoreboard);
     }
 
