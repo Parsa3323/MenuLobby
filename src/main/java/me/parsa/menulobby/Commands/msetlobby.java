@@ -20,6 +20,7 @@ public class msetlobby implements CommandExecutor {
                     try {
                         Spawns.get().set("lobby-spawn", location);
                         player.sendMessage(ChatColor.GREEN + "Location successfully set");
+                        Spawns.save();
                     } catch (Exception e) {
                         e.printStackTrace();
                         player.sendMessage(ChatColor.RED + "Failed to set lobby location in config : " + e.getMessage());

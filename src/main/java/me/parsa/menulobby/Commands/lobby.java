@@ -1,6 +1,8 @@
 package me.parsa.menulobby.Commands;
 
 import me.parsa.menulobby.Config.Spawns;
+import me.parsa.menulobby.api.Event.PlayerTeleportLobbyEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.World;
@@ -16,10 +18,10 @@ public class lobby implements CommandExecutor {
         if (command.getName().equalsIgnoreCase("lobby")) {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
-                Object rawSpawnLocation = Spawns.get().get("Spawn-Main");
+                Object rawSpawnLocation = Spawns.get().get("lobby-spawn");
 
                 if (rawSpawnLocation == null) {
-                    System.out.println("[DEBUG] 'Spawn-Main' is missing or null in the configuration!");
+                    System.out.println("[DEBUG] 'lobby-spawn' is missing or null in the configuration!");
                     player.sendMessage("§cSpawn location is not configured correctly. Please inform an admin.");
 
                 }
@@ -27,7 +29,7 @@ public class lobby implements CommandExecutor {
                 try {
                     spawn = (Location) rawSpawnLocation;
                 } catch (ClassCastException ex) {
-                    System.out.println("[DEBUG] 'Spawn-Main' is not a valid Location object! Error: " + ex.getMessage());
+                    System.out.println("[DEBUG] 'lobby-spawn' is not a valid Location object! Error: " + ex.getMessage());
                     player.sendMessage("§cSpawn location is corrupted in the configuration!");
 
                 }
@@ -41,11 +43,13 @@ public class lobby implements CommandExecutor {
 
                 System.out.println("[DEBUG] Teleporting player '" + player.getName() + "' to the spawn location.");
 
-                boolean teleportSuccess = player.teleport(spawn);
-                System.out.println("[DEBUG] Teleport success: " + teleportSuccess);
-                player.playSound(player.getLocation(), Sound.NOTE_PLING, 1 , 1);
-
-
+                PlayerTeleportLobbyEvent lobbyEvent = new PlayerTeleportLobbyEvent(player, spawn);
+                Bukkit.getPluginManager().callEvent(lobbyEvent);
+                if (!lobbyEvent.isCancelled()) {
+                    boolean teleportSuccess = player.teleport(spawn);
+                    System.out.println("[DEBUG] Teleport success: " + teleportSuccess);
+                    player.playSound(player.getLocation(), Sound.NOTE_PLING, 1 , 1);
+                }
             } else {
                 sender.sendMessage("This command can only be used by players!");
             }
