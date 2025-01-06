@@ -3,6 +3,13 @@ version: '${project.version}'
 main: me.parsa.menulobby.MenuLobby
 softdepend: [NoBlocks, BedWars1058, Parties, PlaceholderAPI]
 commands:
+  msetlobby:
+    aliases:
+      - setlobby
+    usage: /msetlobby
+    description: set the lobby that you can be teleported to with /lobby
+  lobby:
+    description: Teleports user to the lobby
   mstats:
     usage: /mstats <player> / /mstats
   mbroadcast:

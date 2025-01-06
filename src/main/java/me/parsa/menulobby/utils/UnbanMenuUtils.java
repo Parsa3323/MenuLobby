@@ -38,7 +38,7 @@ public class UnbanMenuUtils {
             bangui.addItem(playerHead);
         }
 
-        // Check permissions and open the GUI for the player
+
         if (player.hasPermission("menulobby.unban")) {
             player.openInventory(bangui);
         }

@@ -22,6 +22,7 @@ public class PlayerPreJoin implements Listener {
         this.webhook_url = webhook_url;
     }
 
+
     @EventHandler
     public void onPre(AsyncPlayerPreLoginEvent e) {
         if (is_enabled_web) {

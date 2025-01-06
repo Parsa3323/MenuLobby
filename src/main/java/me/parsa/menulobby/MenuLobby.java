@@ -2,6 +2,7 @@ package me.parsa.menulobby;
 
 
 import me.parsa.menulobby.Commands.*;
+import me.parsa.menulobby.Config.Spawns;
 import me.parsa.menulobby.Events.*;
 import me.parsa.menulobby.Events.NoBlock.NoAnvilOpen;
 import me.parsa.menulobby.Events.NoBlock.NoBlockBreak;
@@ -114,7 +115,12 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         } else {
             new ChatPapi().register();
         }
-
+//        SIde for setting the spawns up
+        Spawns.setup();
+        Spawns.get().addDefault("lobby-spawn", "?");
+        Spawns.get().options().copyDefaults(true);
+        Spawns.save();
+//        Stop
 
         boolean isE = config.getBoolean("ScoreBoard.enabled");
         String server_ip = config.getString("ScoreBoard.server-ip");
@@ -230,7 +236,8 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         boolean is_webhook = config.getBoolean("webhooks.enabled");
 
         System.out.println(is_no_anvil  + " "  + is_no_chest +  " " + is_no_block);
-
+        getCommand("msetlobby").setExecutor(new msetlobby());
+        getCommand("lobby").setExecutor(new lobby());
         getServer().getPluginManager().registerEvents(new NoChestOpen(this, is_no_chest, no_perm_no_chests, only_spawn_world_no_chests), this);
         getServer().getPluginManager().registerEvents(new NoAnvilOpen(this, is_no_anvil, no_perm_no_anvil), this);
         getServer().getPluginManager().registerEvents(new NoBlockBreak(this, no_perm_no_blocks, is_no_block, is_in_one_word_no_blocks), this);
