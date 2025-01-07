@@ -9,6 +9,7 @@ import me.parsa.menulobby.Events.NoBlock.NoBlockBreak;
 import me.parsa.menulobby.Events.NoBlock.NoChestOpen;
 import me.parsa.menulobby.Listerners.*;
 import me.parsa.menulobby.Placeholders.ChatPapi;
+import me.parsa.menulobby.advertise.ads;
 import me.parsa.menulobby.utils.UpdateChecker;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.Bukkit;
@@ -248,6 +249,18 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
 //        config for blocked words
         List<String> blocked_custom = config.getStringList("blocked-messages");
         getServer().getPluginManager().registerEvents(new NoBadWord(blocked_custom), this);
+
+
+        boolean ad_enabled = getConfig().getBoolean("ads.enabled");
+        boolean ad_sound_effects = getConfig().getBoolean("ads.sound-effects");
+        String ad_sound = getConfig().getString("ads.sound");
+        String ads_chat_messages = getConfig().getString("ads.chat-message");
+        int ads_shows_every = getConfig().getInt("ads.shows-every");
+        boolean ads_titles_enabled = getConfig().getBoolean("ads.titles.enabled");
+        String ads_titles_titles = getConfig().getString("ads.titles.title");
+        String title_description = getConfig().getString("ads.titles.description");
+        ads ads = new ads(this, ad_enabled, ad_sound_effects, ad_sound, ads_chat_messages, ads_shows_every, ads_titles_enabled, ads_titles_titles, title_description);
+        ads.Start();
 
         getServer().getPluginManager().registerEvents(new NoMob(this), this);
         getServer().getPluginManager().registerEvents(new NoRain(this), this);

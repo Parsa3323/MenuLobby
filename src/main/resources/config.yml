@@ -58,3 +58,27 @@ webhooks:
   #discord server webhooks
   enabled: true
   url: "https://discord.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN"
+
+ads:
+  # Enable or disable the entire advertisement system.
+  enabled: false
+
+  titles:
+    # Enable or disable titles for advertisements.
+    enabled: true
+    # The main title of the advertisement.
+    title: AD-NAME
+    # The description or subtitle shown under the title.
+    description: AD-DESCRIPTION
+
+  # Enable or disable sound effects when an ad is shown.
+  sound-effects: true
+  # The sound played when an advertisement appears.
+  sound: NOTE_PLING
+
+  # The chat message sent as part of the advertisement.
+  chat-message: MENU LOBBY IS THE BEST PLUGIN
+
+  # The interval (in minutes) at which advertisements are shown.
+  shows-every: 10 # Minutes
+
