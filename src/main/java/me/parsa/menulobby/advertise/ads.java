@@ -1,9 +1,14 @@
 package me.parsa.menulobby.advertise;
 
 import me.parsa.menulobby.MenuLobby;
+import me.parsa.menulobby.api.Event.AdSendEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class ads {
 
@@ -47,21 +52,29 @@ public class ads {
 
                     Sound soundEffect = null;
 
-                    try {
-                        soundEffect = Sound.valueOf(sound.toUpperCase());
+                    ArrayList<Player> players =  new ArrayList<Player>(Bukkit.getOnlinePlayers());
 
-                    } catch (IllegalArgumentException e) {
-                        System.out.println("[DEBUG] Invalid sound name: " + sound);
-                    }
+                    AdSendEvent events = new AdSendEvent(chat_messages, title_title, players);
+                    Bukkit.getPluginManager().callEvent(events);
+                    if (!events.isCancelled()) {
+                        try {
+                            soundEffect = Sound.valueOf(sound.toUpperCase());
 
-                    if (titles_enabled) {
-                        for (Player onlinePlayer : Bukkit.getServer().getOnlinePlayers()) {
-                            onlinePlayer.sendTitle(title_title, title_description);
-                            if (sound_effects) {
-                                onlinePlayer.playSound(onlinePlayer.getLocation(), soundEffect, 1 , 1);
-                            }
-
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("[DEBUG] Invalid sound name: " + sound);
                         }
+
+                        if (titles_enabled) {
+                            for (Player onlinePlayer : Bukkit.getServer().getOnlinePlayers()) {
+                                onlinePlayer.sendTitle(title_title, title_description);
+                                if (sound_effects) {
+                                    onlinePlayer.playSound(onlinePlayer.getLocation(), soundEffect, 1 , 1);
+                                }
+
+                            }
+                        }
+                    } else if (events.isCancelled()) {
+                        System.out.println("[DEBUG] event for ads has been canceled");
                     }
 
                 }

@@ -15,10 +15,21 @@ public class mtp implements CommandExecutor {
         if (command.getName().equalsIgnoreCase("mtp")) {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
+                if (args.length == 1) {
+                    if (player.hasPermission("menulobby.admin")) {
+                        String player_to_tp = args[0];
+                        Player p2 = Bukkit.getPlayer(player_to_tp);
+                        player.playSound(player.getLocation(), Sound.DOOR_OPEN, 1 , 1);
+                        player.teleport(p2.getLocation());
+                        player.sendMessage(ChatColor.GREEN + "Teleported you to " + p2.getName());
+                    }
+                }
                 if (args.length == 2) {
                     if (player.hasPermission("menulobby.admin")) {
                         String p_1 = args[0];
                         String p_2 = args[1];
+
+
 
                         Player player_to_tp = Bukkit.getPlayer(p_1);
                         Player player_2 = Bukkit.getPlayer(p_2);

@@ -1,38 +1,30 @@
 package me.parsa.menulobby.api.Event;
 
-
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-public class PlayerTeleportLobbyEvent extends Event {
 
+public class PlayerEnableFlyEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
 
     private boolean cancelled;
 
     Player player;
 
-
-    Location lobbyLocation;
-
-    public void setLobbyLocation(Location lobbyLocation) {
-        this.lobbyLocation = lobbyLocation;
-    }
-
-
-    public PlayerTeleportLobbyEvent(Player player, Location lobbyLocation) {
-        this.lobbyLocation = lobbyLocation;
-        this.player = player;
-    }
+    Player target;
 
     public Player getPlayer() {
         return player;
     }
 
-    public Location getLobbyLocation() {
-        return lobbyLocation;
+    public Player getTarget() {
+        return target;
+    }
+
+    public PlayerEnableFlyEvent(Player player, Player target) {
+        this.player = player;
+        this.target = target;
     }
 
     public boolean isCancelled() {
@@ -51,5 +43,4 @@ public class PlayerTeleportLobbyEvent extends Event {
         return handlers;
 
     }
-
 }

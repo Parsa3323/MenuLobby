@@ -1,0 +1,46 @@
+package me.parsa.menulobby.Commands;
+
+import me.parsa.menulobby.Config.JumpPadsConf;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (command.getName().equalsIgnoreCase("mjumppad")) {
+            if (sender instanceof Player) {
+                Player player = (Player) sender;
+                if (player.hasPermission("menulobby.admin")) {
+                    if (args.length >= 2) {
+                        String text = args[0];
+
+                        if (text.equalsIgnoreCase("create")) {
+                            String name = args[1];
+                            Location playerLocation = player.getLocation();
+
+                            JumpPadsConf.get().addDefault(name + ".location", playerLocation);
+                            JumpPadsConf.save();
+                            player.sendMessage(ChatColor.GREEN + "Added your jump pad successfully");
+                            return true;
+                        }
+                    } else {
+                        player.sendMessage(ChatColor.RED + "Usage: /mjumppad create <name>");
+                    }
+                } else {
+                    player.sendMessage(ChatColor.RED + "You do not have permission to use this command.");
+                }
+            } else {
+                sender.sendMessage("This command can only be used by players!");
+            }
+            return true;
+        }
+        return false;
+    }
+
+
+}

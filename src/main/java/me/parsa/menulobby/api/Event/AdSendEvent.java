@@ -1,38 +1,45 @@
 package me.parsa.menulobby.api.Event;
 
-
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-public class PlayerTeleportLobbyEvent extends Event {
+import java.util.List;
+
+public class AdSendEvent extends Event {
 
     private static final HandlerList handlers = new HandlerList();
 
     private boolean cancelled;
 
-    Player player;
+    String adMessage;
 
+    String adTitle;
 
-    Location lobbyLocation;
+    boolean Titles;
 
-    public void setLobbyLocation(Location lobbyLocation) {
-        this.lobbyLocation = lobbyLocation;
+    List<Player> players;
+
+    public AdSendEvent(String adMessage, String adTitle, List<Player> players) {
+        this.adMessage = adMessage;
+        this.adTitle = adTitle;
+        this.players = players;
     }
 
-
-    public PlayerTeleportLobbyEvent(Player player, Location lobbyLocation) {
-        this.lobbyLocation = lobbyLocation;
-        this.player = player;
+    public boolean isTitles() {
+        return Titles;
     }
 
-    public Player getPlayer() {
-        return player;
+    public String getAdMessage() {
+        return adMessage;
     }
 
-    public Location getLobbyLocation() {
-        return lobbyLocation;
+    public String getAdTitle() {
+        return adTitle;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
     }
 
     public boolean isCancelled() {
@@ -51,5 +58,4 @@ public class PlayerTeleportLobbyEvent extends Event {
         return handlers;
 
     }
-
 }

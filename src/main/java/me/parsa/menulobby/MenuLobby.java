@@ -2,6 +2,7 @@ package me.parsa.menulobby;
 
 
 import me.parsa.menulobby.Commands.*;
+import me.parsa.menulobby.Config.JumpPadsConf;
 import me.parsa.menulobby.Config.Spawns;
 import me.parsa.menulobby.Events.*;
 import me.parsa.menulobby.Events.NoBlock.NoAnvilOpen;
@@ -121,6 +122,10 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         Spawns.get().addDefault("lobby-spawn", "?");
         Spawns.get().options().copyDefaults(true);
         Spawns.save();
+
+        JumpPadsConf.setup();
+        JumpPadsConf.get().options().copyDefaults(true);
+        JumpPadsConf.save();
 //        Stop
 
         boolean isE = config.getBoolean("ScoreBoard.enabled");
@@ -225,6 +230,9 @@ public final class MenuLobby extends JavaPlugin implements Listener, CommandExec
         String toxic_warn = config.getString("warn.toxic");
         String chaet_warn = config.getString("warn.cheat");
         String cross_warn = config.getString("warn.crossteaming");
+
+        getCommand("mjumppad").setExecutor(new mjumppad());
+
 
         // NoChests
         boolean is_no_chest = noBlock.getBoolean("NoChests.enabled");
